@@ -517,12 +517,11 @@
 <span id="cb2-4"><a href="#cb2-4"></a><span class="fu">summaryRprof</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>$by.self
-                        self.time self.pct total.time total.pct
-"profvis::pause"             0.40    83.33       0.40     83.33
-".updateMethodsInTable"      0.02     4.17       0.04      8.33
-"fun"                        0.02     4.17       0.04      8.33
-"getGeneric"                 0.02     4.17       0.02      4.17
-"unique"                     0.02     4.17       0.02      4.17
+                  self.time self.pct total.time total.pct
+"profvis::pause"       0.40    83.33       0.40     83.33
+"lazyLoadDBfetch"      0.04     8.33       0.04      8.33
+"gzfile"               0.02     4.17       0.02      4.17
+"stopifnot"            0.02     4.17       0.02      4.17
 
 $by.total
                           total.time total.pct self.time self.pct
@@ -554,28 +553,38 @@ $by.total
 "loadNamespace"                 0.08     16.67      0.00     0.00
 "namespaceImport"               0.08     16.67      0.00     0.00
 "namespaceImportFrom"           0.08     16.67      0.00     0.00
-".updateMethodsInTable"         0.04      8.33      0.02     4.17
-"fun"                           0.04      8.33      0.02     4.17
-"doTryCatch"                    0.04      8.33      0.00     0.00
-"methods::cacheMetaData"        0.04      8.33      0.00     0.00
-"tryCatch"                      0.04      8.33      0.00     0.00
-"tryCatchList"                  0.04      8.33      0.00     0.00
-"tryCatchOne"                   0.04      8.33      0.00     0.00
-"getGeneric"                    0.02      4.17      0.02     4.17
-"unique"                        0.02      4.17      0.02     4.17
+"doTryCatch"                    0.06     12.50      0.00     0.00
+"tryCatch"                      0.06     12.50      0.00     0.00
+"tryCatchList"                  0.06     12.50      0.00     0.00
+"tryCatchOne"                   0.06     12.50      0.00     0.00
+"lazyLoadDBfetch"               0.04      8.33      0.04     8.33
+"fun"                           0.04      8.33      0.00     0.00
+"runHook"                       0.04      8.33      0.00     0.00
+"gzfile"                        0.02      4.17      0.02     4.17
+"stopifnot"                     0.02      4.17      0.02     4.17
+".Call"                         0.02      4.17      0.00     0.00
 ".checkGroupSigLength"          0.02      4.17      0.00     0.00
-".make_numeric_version"         0.02      4.17      0.00     0.00
 ".recMembers"                   0.02      4.17      0.00     0.00
-"as.numeric_version"            0.02      4.17      0.00     0.00
+".updateMethodsInTable"         0.02      4.17      0.00     0.00
+"&lt;Anonymous&gt;"                   0.02      4.17      0.00     0.00
+"callback"                      0.02      4.17      0.00     0.00
+"env_get"                       0.02      4.17      0.00     0.00
 "eval.parent"                   0.02      4.17      0.00     0.00
+"get"                           0.02      4.17      0.00     0.00
+"getGeneric"                    0.02      4.17      0.00     0.00
 "getGroupMembers"               0.02      4.17      0.00     0.00
+"is"                            0.02      4.17      0.00     0.00
 "lazyLoad"                      0.02      4.17      0.00     0.00
 "lazyLoadDBexec"                0.02      4.17      0.00     0.00
 "local"                         0.02      4.17      0.00     0.00
-"numeric_version"               0.02      4.17      0.00     0.00
-"Ops.numeric_version"           0.02      4.17      0.00     0.00
+"methods::cacheMetaData"        0.02      4.17      0.00     0.00
+"readRDS"                       0.02      4.17      0.00     0.00
 "Recall"                        0.02      4.17      0.00     0.00
-"runHook"                       0.02      4.17      0.00     0.00
+"replace_from"                  0.02      4.17      0.00     0.00
+"resolve"                       0.02      4.17      0.00     0.00
+"run_on_load"                   0.02      4.17      0.00     0.00
+"set2"                          0.02      4.17      0.00     0.00
+"setNames"                      0.02      4.17      0.00     0.00
 "sys.source"                    0.02      4.17      0.00     0.00
 "try"                           0.02      4.17      0.00     0.00
 
