@@ -1,0 +1,742 @@
+---
+title: "4 Ensuring Quality"
+description: "Package quality + exercise<br/>[Photo CC0 by Pixabay on pexels.com]{.copyright}"
+image: thumbnails/quality.jpg
+---
+
+# Apply Clean Code Rules
+
+![[Photo CC0 by Markus Spiske on
+pexels.com]{.copyright}](thumbnails/code_view.jpg){fig-align="center"}
+
+## Why is Clean Code important?
+
+-   **Maintainability**: The code is readable and understandable and has a
+    reduced complexity, i.e., it's easier to fix bugs
+-   **Extensibility**: The architecture is simpler, cleaner, and more
+    expressive, i.e., it's easier to extend the capabilities and the risk of
+    introducing bugs is reduced
+-   **Performance**: The code often runs faster, uses less memory, or is easier
+    to optimize
+
+## Example: Clean Code Rules - Step by Step
+
+This script breaks all common clean code rules:
+
+```{r, echo = TRUE}
+y=function(x){
+  s1=0
+  for(v1 in x){s1=s1+v1}
+  m1=s1/length(x)
+  i=ceiling(length(x)/2)
+  if(length(x) %% 2 == 0){i=c(i,i+1)}
+  s2=0
+  for(v2 in i){s2=s2+x[v2]}
+  m2=s2/length(i)
+  c(m1,m2)
+}
+y(c(1:7, 100))
+```
+
+. . .
+
+We now refactor it by applying clean code rules...
+
+## Example: CCR#1
+
+::: columns
+::: {.column width="50%"}
+```{r, echo = TRUE}
+y=function(x){
+  s1=0
+  for(v1 in x){s1=s1+v1}
+  m1=s1/length(x)
+  i=ceiling(length(x)/2)
+  if(length(x) %% 2 == 0){i=c(i,i+1)}
+  s2=0
+  for(v2 in i){s2=s2+x[v2]}
+  m2=s2/length(i)
+  c(m1,m2)
+}
+y(c(1:7, 100))
+```
+:::
+
+::: {.column width="50%"}
+CCR#1 **Naming**: Are the names of the variables, functions, and classes
+descriptive and meaningful?
+:::
+:::
+
+## Example: CCR#1
+
+```{r, echo = TRUE, eval = FALSE}
+getMeanAndMedian=function(x){
+    sum1=0
+    for(value in x){sum1=sum1+value}
+    meanValue=sum1/length(x)
+    centerIndices=ceiling(length(x)/2)
+    if(length(x) %% 2 == 0){
+        centerIndices=c(centerIndices,centerIndices+1)
+    }
+    sum2=0
+    for(centerIndex in centerIndices){sum2=sum2+x[centerIndex]}
+    medianValue=sum2/length(centerIndices)
+    c(meanValue,medianValue)
+}
+```
+
+CCR#1 **Naming** [{{< fa circle-check size=1x >}}]{.green}
+
+CCR#2 **Formatting**: Are indentation, spacing, and bracketing consistent, i.e.,
+is the code easy to read [{{< fa circle-question size=1x >}}]{.red}
+
+## Example: CCR#2
+
+::: columns
+::: {.column width="68%"}
+```{r, echo = TRUE, eval = FALSE}
+#| style: font-size:0.95em!important;
+getMeanAndMedian <- function(x) {
+    sum1 <- 0
+    for (value in x) {
+        sum1 <- sum1 + value
+    }
+    meanValue <- sum1 / length(x)
+    centerIndices <- ceiling(length(x) / 2)
+    if (length(x) %% 2 == 0) {
+        centerIndices <- c(
+          centerIndices, centerIndices + 1)
+    }
+    sum2 <- 0
+    for (centerIndex in centerIndices) {
+        sum2 <- sum2 + x[centerIndex]
+    }
+    medianValue <- sum2 / length(centerIndices)
+    c(meanValue, medianValue)
+}
+```
+:::
+
+::: {.column width="32%"}
+CCR#2 **Formatting** [{{< fa circle-check size=1x >}}]{.green}
+
+CCR#3 **Simplicity**: Did you keep the code as simple and straightforward as
+possible, i.e., did you avoid unnecessary complexity
+[{{< fa circle-question size=1x >}}]{.red}
+:::
+:::
+
+## Example: CCR#3
+
+Note:
+
+-   From the **Simplicity** rule also follows that large source files should be
+    split into multiple files
+-   General guideline: keeping the number of lines to less than 1,000 lines per
+    file can help maintain code readability and manageability
+
+## Example: CCR#3
+
+```{r, echo = TRUE, eval = FALSE}
+#| code-line-numbers: "2,7"
+getMeanAndMedian <- function(x) {
+    meanValue <- sum(x) / length(x)
+    centerIndices <- ceiling(length(x) / 2)
+    if (length(x) %% 2 == 0) {
+        centerIndices <- c(centerIndices, centerIndices + 1)
+    }
+    medianValue <- sum(x[centerIndices]) / length(centerIndices)
+    c(meanValue, medianValue)
+}
+```
+
+CCR#3 **Simplicity** [{{< fa circle-check size=1x >}}]{.green}
+
+CCR#4 **Single Responsibility Principle (SRP)**: does each function have only a single,
+well-defined purpose [{{< fa circle-question size=1x >}}]{.red}
+
+## Example: CCR#4
+
+```{r, echo = TRUE, eval = TRUE}
+getMean <- function(x) {
+    sum(x) / length(x)
+}
+
+isLengthAnEvenNumber <- function(x) {
+    length(x) %% 2 == 0
+}
+
+getMedian <- function(x) {
+    centerIndices <- ceiling(length(x) / 2)
+    if (isLengthAnEvenNumber(x)) {
+        centerIndices <- c(centerIndices, centerIndices + 1)
+    }
+    sum(x[centerIndices]) / length(centerIndices)
+}
+```
+
+CCR#4 **Single Responsibility Principle (SRP)**
+[{{< fa circle-check size=1x >}}]{.green}
+
+CCR#5 **Don't Repeat Yourself (DRY)**: Did you avoid duplication of code, either
+by reusing existing code or creating functions
+[{{< fa circle-question size=1x >}}]{.red}
+
+## Example: CCR#5
+
+::: clean-code-rule
+CCR#5: DRY
+:::
+
+Suppose you have a code block that performs the same calculation multiple times:
+
+```{r, echo = TRUE}
+result1 <- 2 * 3 + 4
+result2 <- 2 * 5 + 4
+result3 <- 2 * 7 + 4
+```
+
+Create a function to encapsulate this calculation and reuse it multiple times:
+
+```{r, echo = TRUE}
+calculate <- function(x) {
+  2 * x + 4
+}
+
+result1 <- calculate(3)
+result2 <- calculate(5)
+result3 <- calculate(7)
+```
+
+## Example: CCR#5
+
+```{r, echo = TRUE, eval = FALSE}
+#| code-line-numbers: "14"
+getMean <- function(x) {
+    sum(x) / length(x)
+}
+
+isLengthAnEvenNumber <- function(x) {
+    length(x) %% 2 == 0
+}
+
+getMedian <- function(x) {
+    centerIndices <- ceiling(length(x) / 2)
+    if (isLengthAnEvenNumber(x)) {
+        centerIndices <- c(centerIndices, centerIndices + 1)
+    }
+    getMean(x[centerIndices])
+}
+```
+
+CCR#5 **Don't Repeat Yourself (DRY)** [{{< fa circle-check size=1x >}}]{.green}
+
+CCR#6 **Comments**: Did you use comments to explain the purpose of code blocks
+and to clarify complex logic [{{< fa circle-question size=1x >}}]{.red}
+
+## Example: CCR#6
+
+::: columns
+::: {.column width="60%"}
+```{r, echo = TRUE, eval = FALSE}
+#| code-line-numbers: "1,6,7,12"
+#| style: font-size:0.9em!important;
+# returns the mean of x
+getMean <- function(x) {
+    sum(x) / length(x)
+}
+
+# returns TRUE if the length of x is 
+# an even number; FALSE otherwise
+isLengthAnEvenNumber <- function(x) {
+    length(x) %% 2 == 0
+}
+
+# returns the median of x
+getMedian <- function(x) {
+    centerIndices <- ceiling(length(x) / 2)
+    if (isLengthAnEvenNumber(x)) {
+        centerIndices <- c(centerIndices, 
+             centerIndices + 1)
+    }
+    getMean(x[centerIndices])
+}
+```
+:::
+
+::: {.column width="40%"}
+CCR#6 **Comments** [{{< fa circle-check size=1x >}}]{.green}
+
+CCR#7 **Error Handling**: Did you include error handling code to gracefully
+handle exceptions and unexpected situations
+[{{< fa circle-question size=1x >}}]{.red}
+
+```{r, echo = TRUE, eval = FALSE}
+#| code-line-numbers: false
+getMean(c("a", "b", "c"))
+```
+
+[Error in sum(x) : invalid 'type' (character) of argument]{.red-small}
+:::
+:::
+
+## Example: CCR#7
+
+```{r, echo = TRUE, eval = FALSE}
+#| code-line-numbers: "3,9,15"
+#| style: font-size:0.9em!important;
+#' returns the mean of x
+getMean <- function(x) {
+    checkmate::assertNumeric(x)
+    sum(x) / length(x)
+}
+#' returns TRUE if the length of x is an even number; FALSE otherwise
+isLengthAnEvenNumber <- function(x) {
+    checkmate::assertVector(x)
+    length(x) %% 2 == 0
+}
+#' returns the median of x
+getMedian <- function(x) {
+    checkmate::assertNumeric(x)
+    centerIndices <- ceiling(length(x) / 2)
+    if (isLengthAnEvenNumber(x)) {
+        centerIndices <- c(centerIndices, centerIndices + 1)
+    }
+    getMean(x[centerIndices]) 
+}
+```
+
+CCR#7 **Error Handling** [{{< fa circle-check size=1x >}}]{.green}
+
+## Summary of Clean Code Rules
+
+1.  **Naming**: Use descriptive and meaningful names for variables, functions,
+    and classes
+2.  **Formatting**: Adhere to consistent indentation, spacing, and bracketing to
+    make the code easy to read
+3.  **Simplicity**: Keep the code as simple and straightforward as possible,
+    avoiding unnecessary complexity
+4.  **Single Responsibility Principle (SRP)**: Each function should have a
+    single, well-defined purpose
+5.  **Don't Repeat Yourself (DRY)**: Avoid duplication of code, either by
+    reusing existing code or creating functions
+
+## Summary of Clean Code Rules
+
+6.  **Comments**: Use comments to explain the purpose of code blocks and to
+    clarify complex logic
+7.  **Error Handling**: Include error handling code to gracefully handle
+    exceptions and unexpected situations
+8.  [{{< fa star size=1x >}}]{.blue} **Test-Driven Development (TDD)**: Write
+    tests for your code to ensure it behaves as expected and to catch bugs early
+9.  **Refactoring**: Regularly refactor your code to keep it clean, readable,
+    and maintainable
+10. [{{< fa star size=1x >}}]{.blue} **Code Review**: Have other team members
+    review your code to catch potential issues and improve its quality
+
+## How to apply Clean Code Rules?
+
+Recommended quality workflow for R packages:
+
+-   Follow the naming and styling guidelines (#1, #2)
+-   Continuously write tests and optimize the code coverage with help of tools
+    (#7, #8)
+-   Document the package and functions (#6)
+-   Regularly refactor your code (#1 - #7, #9)
+-   Publish your code on [GitHub](https://github.com) and invite colleagues to
+    contribute (#10)
+
+# Package Testing
+
+::: clean-code-rule
+CCR#8: TDD
+:::
+
+![[Photo CC0 by ThisIsEngineering on
+pexels.com]{.copyright}](thumbnails/testing.jpg){fig-align="center"}
+
+## Verification vs Validation
+
+::: columns
+::: {.column width="50%"}
+**Verification**:\
+Are we building the product right?
+
+-   The product meets a set of specified requirements
+-   Activities: reviews, inspections, and testing
+-   Goal: ensure that the product has been designed and implemented correctly
+:::
+
+::: {.column width="50%"}
+**Validation**:\
+Are we building the right product?
+
+-   Evaluate the product during or at the end of the development process
+-   Show that the product meet the specified requirements
+-   Goal: confirm that the product is fit for its intended purpose\
+    $\rightarrow$ Refers back to the user's needs
+:::
+:::
+
+## What are Unit Tests?
+
+-   Automated tests
+-   Record the expected output of a function using code
+-   Check individual units of code (functions or methods) for correctness
+-   Typically written by developers as part of the software development process
+-   Typically run automatically as part of a CI/CD pipeline
+-   Can be run before committing code changes
+
+## Why are unit tests important?
+
+::: clean-code-rule
+CCR#8: TDD
+:::
+
+-   Help to ensure that individual units of code are working correctly
+-   Ensure that changes to the codebase do not break existing functionality
+-   Express the desired behavior in a way that a human can understand
+-   Help to identify and fix bugs early on in the development process
+-   Save time and resources by catching issues before they become more difficult
+    and costly to fix
+
+::: info-block
+::: columns
+::: {.column width="20%"}
+[{{< fa circle-info size=3x >}}]{.yellow}
+:::
+
+::: {.column width="80%"}
+Unit tests help to increase the reliability and maintainability of the code
+:::
+:::
+:::
+
+## What other important test types exist?
+
+-   **Integration Testing**: Test if different functions or scripts work
+    together as expected
+-   **Performance Testing**: Analyze the performance of the implemented
+    functions and check whether they meet the requirements (UR/UX)
+-   **Snapshot Testing**: Record the results in a separate human-readable file
+    and compare it to the output during the test; useful for large/complex
+    outputs and binary formats like plots
+
+# Testing in Practice
+
+![[Photo CC0 by cottonbro studio on
+pexels.com]{.copyright}](thumbnails/coding_cottonbro-studio.jpg){fig-align="center"}
+
+
+## How to realize testing with R?
+
+R package [testthat](https://cran.r-project.org/package=testthat)
+
+-   Popular testing framework for R that is easy to learn and use
+-   Unit testing, integration testing, and [snapshot
+    testing](https://cran.r-project.org/web/packages/testthat/vignettes/snapshotting.html)
+    supported
+-   Also performance testing, e.g., with help of
+    [microbenchmark](https://cran.r-project.org/package=microbenchmark) package
+    
+**Example**: unit test passed
+
+```{r, echo = TRUE}
+library(testthat)
+expect_equal(getMean(c(1, 3, 2)), 2)
+```
+
+**Example**: unit test failed
+
+```{r, echo = TRUE, eval = FALSE}
+expect_equal(getMean(c(1, 3, 2, NA)), 2)
+expect_equal(getMedian(c(1, 3, 2)), 2)
+```
+
+::: red-small
+Error: getMean(c(1, 3, 2, NA)) not equal to 2.
+Error: getMedian(c(1, 3, 2)) not equal to 2.
+:::
+
+## Investigating failed tests
+
+```{r, echo = TRUE, eval = TRUE}
+#| code-line-numbers: "4,10,16-18"
+#| style: font-size:0.9em!important;
+#' returns the mean of x
+getMean <- function(x, na.rm = TRUE) {
+    checkmate::assertNumeric(x)
+    sum(x, na.rm = na.rm) / length(x[!is.na(x)])
+}
+#' returns TRUE if the length of x is an even number; FALSE otherwise
+isLengthAnEvenNumber <- function(x) {
+    checkmate::assertVector(x)
+    length(x[!is.na(x)]) %% 2 == 0
+}
+#' returns the median of x
+getMedian <- function(x, na.rm = TRUE) {
+    checkmate::assertNumeric(x)
+    centerIndices <- ceiling(length(x[!is.na(x)]) / 2)
+    if(anyNA(x) & !na.rm){
+        centerIndices <- NA_real_
+    } else if (isLengthAnEvenNumber(x)) {
+        centerIndices <- c(centerIndices, centerIndices + 1)
+    }
+    getMean(sort(x)[centerIndices]) 
+}
+```
+
+## Re-evaluate tests
+
+```{r, echo = TRUE, eval = TRUE}
+expect_equal(getMedian(c(1, 3, 2)), 2)
+expect_equal(getMedian(c(1, 3, 2, NA), na.rm = FALSE), NA_real_)
+expect_equal(getMean(c(1, 3, 2, NA)), 2)
+expect_equal(getMean(c(1, 3, 2, NA), na.rm = FALSE), NA_real_)
+```
+
+## testthat Comparisons Functions (1/2)
+
+::: small
+
+| Function name                  | Does code...                                                                                      |
+|------------------|---------------------------------------------------------|
+| expect_condition      | fulfill a condition?                           |
+| expect_equal          | return the expected value?                                                      |
+| expect_error          | throw an error?                           |
+| expect_false          | return 'FALSE'?                                                       |
+| expect_gt             | return a number greater than the expected value?                           |
+| expect_gte            | return a number greater or equal than the expected value?                           |
+| expect_identical      | return the expected value?                                                      |
+| expect_invisible      | return a invisible object?                                           |
+| expect_length         | return a vector with the specified length?                                      |
+| expect_lt             | return a number less than the expected value?                           |
+| expect_lte            | return a number less or equal than the expected value?                           |
+| expect_mapequal       | return a vector containing the expected values?                                 |
+| expect_message        | show a message?                           |
+| expect_named          | return a vector with (given) names?                                             |
+:::
+
+## testthat Comparisons Functions (2/2)
+
+::: small
+
+| Function name                  | Does code...                                                                                      |
+|------------------|---------------------------------------------------------|
+| expect_no_condition   | run without condition?                        |
+| expect_no_error       | run without error?                        |
+| expect_no_message     | run without message?                        |
+| expect_no_warning     | run without warning?                        |
+| expect_output         | print output to the console?                                                    |
+| expect_s3_class       | return an object inheriting from the expected S3 class? |
+| expect_s4_class       | return an object inheriting from the expected S4 class? |
+| expect_setequal       | return a vector containing the expected values?                                 |
+| expect_silent         | execute silently?                                                               |
+| expect_true           | return 'TRUE'?                                                       |
+| expect_type           | return an object inheriting from the expected base type? |
+| expect_vector         | return a vector with the expected size and/or prototype?                        |
+| expect_visible        | return a visible object?                                           |
+| expect_warning        | throw warning?                           |
+:::
+
+## How to check the package quality?
+
+-   [pkgbuild](https://cran.r-project.org/package=pkgbuild): Tools needed to
+    build R packages
+-   [rcmdcheck](https://cran.r-project.org/package=rcmdcheck): Run [R CMD
+    check](https://r-pkgs.org/R-CMD-check.html) from R and capture results
+-   [devtools](https://cran.r-project.org/package=devtools): Tools to make
+    developing R packages easier, e.g.,
+    [check()](https://rdrr.io/cran/devtools/man/check.html) automatically builds
+    and checks a source package, using all known best practices
+
+## How to improve the test coverage?
+
+[covr](https://cran.r-project.org/package=covr): Track and report code coverage
+for your package
+
+```{r, echo = TRUE, eval = FALSE}
+library(covr)
+x <- package_coverage()
+report(x)
+```
+
+. . .
+
+![](resources/covr_full.png)
+
+## Example on test coverage
+
+Let's assume we have added a generic function to cat a simulation result:
+
+```{r, echo = TRUE, eval = FALSE}
+#' 
+#' @export
+#'
+cat.SimulationResult <- function(... , file = "", sep = " ", 
+        fill = FALSE, labels = NULL, append = FALSE) {
+    args <- list(...)
+}
+```
+
+. . .
+
+But we forgot to finalize the implementation and didn't create unit tests.
+
+Re-execution of
+
+```{r, echo = TRUE, eval = FALSE}
+#| code-line-numbers: false
+report(package_coverage())
+```
+
+then results in...
+
+## Example on test coverage
+
+![](resources/covr_example_1.png)
+
+## Example on test coverage
+
+We can go into the details by clicking on a file name:
+
+![](resources/covr_example_2.png)
+
+# Code Style
+
+::: clean-code-rule
+CCR#2: Formatting
+:::
+
+![[Photo CC0 by Pavel Danilyuk on
+pexels.com]{.copyright}](thumbnails/styling.jpg){fig-align="center"}
+
+## Why is Code Style important?
+
+::: clean-code-rule
+CCR#2: Formatting
+:::
+
+-   Make the code more readable, maintainable, and consistent
+-   Make it easier for others to understand and contribute to the codebase
+-   Adhering to a consistent code style can reduce the number of errors and make
+    debugging simpler
+-   "Good coding style is like correct punctuation: you can manage without it,
+    butitsuremakesthingseasiertoread." ([The tidyverse style
+    guide](https://style.tidyverse.org))
+
+## How to optimize the code styling?
+
+Two popular R packages support the [tidyverse style
+guide](https://style.tidyverse.org):
+
+-   [styler](https://styler.r-lib.org): interactively restyle selected text,
+    files, or entire projects:
+    -   [style_text](https://styler.r-lib.org/reference/style_text.html)
+    -   [style_file](https://styler.r-lib.org/reference/style_file.html)
+    -   [style_pkg](https://styler.r-lib.org/reference/style_pkg.html)
+-   [lintr](https://github.com/jimhester/lintr): perform automated checks to
+    confirm that you conform to the style guide
+
+The [devtools](https://devtools.r-lib.org) function
+[spell_check](https://devtools.r-lib.org/reference/spell_check.html) runs a
+spell check on text fields in the package description file, manual pages, and
+optionally vignettes.
+
+## Code Styler in RStudio
+
+How to link the [styler](https://styler.r-lib.org)[^10] package to a keyboard shortcut:
+
+::: panel-tabset
+## Browse addins
+
+![](resources/rstudio_addins.png){fig-align="center" width="70%"}
+
+## Set keyboard shortcut
+
+![](resources/rstudio_keyboard_shortcuts.png){fig-align="right" width="52%"}
+:::
+
+[^10]: If not available, install it first
+
+```{=html}
+<!--
+-   types, type safety,
+-   spelling,
+-->
+```
+# Exercise
+
+![[Photo CC0 by Pixabay on
+pexels.com]{.copyright}](thumbnails/exercise.jpg){fig-align="center"}
+
+## Please install the following packages before we moving on
+
+```R
+install.packages(c("DT", "htmltools",
+  "testthat", "rlang", "checkmate", "covr", "styler", "devtools"))
+```
+
+## Tasks
+
+::: panel-tabset
+## Task 1
+
+Take your local *simulatr* package project (see [previous
+excercise](03_workflow.html#/tasks)) and refactor it, i.e., apply the linked
+clean code rules:
+
+1.  Optimize naming manually (CCR#1)
+2.  Use the [styler](https://styler.r-lib.org) package to optimize the
+    formatting (CCR#2)
+3.  Check and correct where appropriate:
+    -   Simplicity (CCR#3)
+    -   Single Responsibility Principle (CCR#4)
+    -   Don't Repeat Yourself (CCR#5)
+
+## Task 2
+
+1.  Implement appropriate error handling (CCR#7) in the *simulatr* package
+2.  Add comments to explain the purpose of code blocks (CCR#6)
+    -   If it concerns exported functions use
+        [Roxygen2](https://roxygen2.r-lib.org/) notation
+3.  Check correct spelling with the
+    [devtools](https://cran.r-project.org/package=devtools) function
+    [spell_check()](https://devtools.r-lib.org/reference/spell_check.html)
+
+## Task 3
+
+Apply CCR#8 to the *simulatr* package project:
+
+1.  Add unit tests
+2.  Optimize your test coverage with help of the [covr](https://covr.r-lib.org/)
+    functions
+    [package_coverage](https://www.rdocumentation.org/packages/covr/versions/3.6.1/topics/package_coverage)
+    and
+    [report](https://www.rdocumentation.org/packages/covr/versions/3.6.1/topics/report)
+
+## Task 4
+
+Check if your package is ready for release with the
+[devtools](https://cran.r-project.org/package=devtools) function
+[check()](https://rdrr.io/cran/devtools/man/check.html)
+:::
+
+# References
+
+-   Cotton, R. (2017). Testing R Code (Illustrated Edition).\
+    Taylor & Francis Inc. \[[Book](https://amzn.to/3Bk6elt)\]
+-   Martin, R. (2008). Clean Code: A Handbook of Agile Software Craftsmanship
+    (1st Edition). Prentice Hall. \[[Book](https://amzn.to/3IKuSS4)\]
+
+# License information
+
+- Creators (initial authors): 
+  Friedrich Pahlke [`r fontawesome::fa("github")`](https://github.com/fpahlke/) [`r fontawesome::fa("linkedin")`](https://www.linkedin.com/in/pahlke/), 
+  Joe Zhu [`r fontawesome::fa("github")`](https://github.com/shajoezhu) [`r fontawesome::fa("linkedin")`](http://www.linkedin.com/in/joe-zhu-464b5818)
+- In the current version, changes were done by (later authors): 
+  Andrew Bean 
+  [`r fontawesome::fa("github")`](https://github.com/andrew-bean) 
+  [`r fontawesome::fa("linkedin")`](https://www.linkedin.com/in/andrew-bean-83539116/)
+{{< include _license_footer.qmd >}}
