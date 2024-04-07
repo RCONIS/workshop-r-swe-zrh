@@ -438,7 +438,7 @@
 <li>The code needs to be correct, i.e.&nbsp;calculate correct results as expected. → <strong>Tests</strong>, <strong>Debugging</strong></li>
 <li>If it is correct, but too slow, then find out which calculations and why they are too slow. → <strong>Profiling</strong></li>
 <li>Once you identified the slow parts, optimize those. → <strong>Code optimization</strong></li>
-<li>If executing the code on your laptop is still too slow → consider running it instead on a high performance cluster (<strong>HPC</strong>), see slides from Michael and Lukas</li>
+<li>If executing the code on your laptop is still too slow → consider running it instead on a high performance cluster (<strong>HPC</strong>), see slides from Lukas and Michael</li>
 </ol>
 </section>
 <section id="tests-see-previous-section" class="slide level2">
@@ -519,68 +519,66 @@
 <pre><code>$by.self
                  self.time self.pct total.time total.pct
 "profvis::pause"      0.40    83.33       0.40     83.33
-"is"                  0.02     4.17       0.02      4.17
-"lapply"              0.02     4.17       0.02      4.17
-"match.arg"           0.02     4.17       0.02      4.17
+"dynGet"              0.02     4.17       0.02      4.17
+"get"                 0.02     4.17       0.02      4.17
 "readRDS"             0.02     4.17       0.02      4.17
+"strsplit"            0.02     4.17       0.02      4.17
 
 $by.total
-                          total.time total.pct self.time self.pct
-".main"                         0.48    100.00      0.00     0.00
-"block_exec"                    0.48    100.00      0.00     0.00
-"call_block"                    0.48    100.00      0.00     0.00
-"eng_r"                         0.48    100.00      0.00     0.00
-"eval_with_user_handlers"       0.48    100.00      0.00     0.00
-"eval"                          0.48    100.00      0.00     0.00
-"evaluate_call"                 0.48    100.00      0.00     0.00
-"evaluate::evaluate"            0.48    100.00      0.00     0.00
-"evaluate"                      0.48    100.00      0.00     0.00
-"execute"                       0.48    100.00      0.00     0.00
-"f"                             0.48    100.00      0.00     0.00
-"handle"                        0.48    100.00      0.00     0.00
-"in_dir"                        0.48    100.00      0.00     0.00
-"in_input_dir"                  0.48    100.00      0.00     0.00
-"knitr::knit"                   0.48    100.00      0.00     0.00
-"process_file"                  0.48    100.00      0.00     0.00
-"process_group.block"           0.48    100.00      0.00     0.00
-"process_group"                 0.48    100.00      0.00     0.00
-"rmarkdown::render"             0.48    100.00      0.00     0.00
-"timing_fn"                     0.48    100.00      0.00     0.00
-"withCallingHandlers"           0.48    100.00      0.00     0.00
-"withVisible"                   0.48    100.00      0.00     0.00
-"profvis::pause"                0.40     83.33      0.40    83.33
-"g"                             0.30     62.50      0.00     0.00
-"asNamespace"                   0.08     16.67      0.00     0.00
-"loadNamespace"                 0.08     16.67      0.00     0.00
-"namespaceImport"               0.08     16.67      0.00     0.00
-"namespaceImportFrom"           0.08     16.67      0.00     0.00
-".checkGroupSigLength"          0.04      8.33      0.00     0.00
-".updateMethodsInTable"         0.04      8.33      0.00     0.00
-"doTryCatch"                    0.04      8.33      0.00     0.00
-"methods::cacheMetaData"        0.04      8.33      0.00     0.00
-"Recall"                        0.04      8.33      0.00     0.00
-"tryCatch"                      0.04      8.33      0.00     0.00
-"tryCatchList"                  0.04      8.33      0.00     0.00
-"tryCatchOne"                   0.04      8.33      0.00     0.00
-"is"                            0.02      4.17      0.02     4.17
-"lapply"                        0.02      4.17      0.02     4.17
-"match.arg"                     0.02      4.17      0.02     4.17
-"readRDS"                       0.02      4.17      0.02     4.17
-".recMembers"                   0.02      4.17      0.00     0.00
-"eval.parent"                   0.02      4.17      0.00     0.00
-"fun"                           0.02      4.17      0.00     0.00
-"get0"                          0.02      4.17      0.00     0.00
-"getGroupMembers"               0.02      4.17      0.00     0.00
-"getHook"                       0.02      4.17      0.00     0.00
-"lazyLoad"                      0.02      4.17      0.00     0.00
-"lazyLoadDBexec"                0.02      4.17      0.00     0.00
-"local"                         0.02      4.17      0.00     0.00
-"on_package_load"               0.02      4.17      0.00     0.00
-"packageEvent"                  0.02      4.17      0.00     0.00
-"runHook"                       0.02      4.17      0.00     0.00
-"setHook"                       0.02      4.17      0.00     0.00
-"sys.source"                    0.02      4.17      0.00     0.00
-"try"                           0.02      4.17      0.00     0.00
+                            total.time total.pct self.time self.pct
+".main"                           0.48    100.00      0.00     0.00
+"block_exec"                      0.48    100.00      0.00     0.00
+"call_block"                      0.48    100.00      0.00     0.00
+"eng_r"                           0.48    100.00      0.00     0.00
+"eval_with_user_handlers"         0.48    100.00      0.00     0.00
+"eval"                            0.48    100.00      0.00     0.00
+"evaluate_call"                   0.48    100.00      0.00     0.00
+"evaluate::evaluate"              0.48    100.00      0.00     0.00
+"evaluate"                        0.48    100.00      0.00     0.00
+"execute"                         0.48    100.00      0.00     0.00
+"f"                               0.48    100.00      0.00     0.00
+"handle"                          0.48    100.00      0.00     0.00
+"in_dir"                          0.48    100.00      0.00     0.00
+"in_input_dir"                    0.48    100.00      0.00     0.00
+"knitr::knit"                     0.48    100.00      0.00     0.00
+"process_file"                    0.48    100.00      0.00     0.00
+"process_group.block"             0.48    100.00      0.00     0.00
+"process_group"                   0.48    100.00      0.00     0.00
+"rmarkdown::render"               0.48    100.00      0.00     0.00
+"timing_fn"                       0.48    100.00      0.00     0.00
+"withCallingHandlers"             0.48    100.00      0.00     0.00
+"withVisible"                     0.48    100.00      0.00     0.00
+"profvis::pause"                  0.40     83.33      0.40    83.33
+"g"                               0.30     62.50      0.00     0.00
+"asNamespace"                     0.08     16.67      0.00     0.00
+"loadNamespace"                   0.08     16.67      0.00     0.00
+"namespaceImport"                 0.08     16.67      0.00     0.00
+"namespaceImportFrom"             0.08     16.67      0.00     0.00
+"doTryCatch"                      0.04      8.33      0.00     0.00
+"fun"                             0.04      8.33      0.00     0.00
+"runHook"                         0.04      8.33      0.00     0.00
+"tryCatch"                        0.04      8.33      0.00     0.00
+"tryCatchList"                    0.04      8.33      0.00     0.00
+"tryCatchOne"                     0.04      8.33      0.00     0.00
+"dynGet"                          0.02      4.17      0.02     4.17
+"get"                             0.02      4.17      0.02     4.17
+"readRDS"                         0.02      4.17      0.02     4.17
+"strsplit"                        0.02      4.17      0.02     4.17
+".checkGroupSigLength"            0.02      4.17      0.00     0.00
+".getGeneric"                     0.02      4.17      0.00     0.00
+".getGenericFromCache"            0.02      4.17      0.00     0.00
+".getGenericFromCacheTable"       0.02      4.17      0.00     0.00
+".updateMethodsInTable"           0.02      4.17      0.00     0.00
+"check_linked_version"            0.02      4.17      0.00     0.00
+"FUN"                             0.02      4.17      0.00     0.00
+"getGeneric"                      0.02      4.17      0.00     0.00
+"lapply"                          0.02      4.17      0.00     0.00
+"methods::cacheMetaData"          0.02      4.17      0.00     0.00
+"packageDescription"              0.02      4.17      0.00     0.00
+"Recall"                          0.02      4.17      0.00     0.00
+"s3_register"                     0.02      4.17      0.00     0.00
+"suppressWarnings"                0.02      4.17      0.00     0.00
+"utils::packageVersion"           0.02      4.17      0.00     0.00
 
 $sample.interval
 [1] 0.02
@@ -709,8 +707,8 @@ Peng, Roger D. 2016. <em>R Programming for Data Science</em>. Lulu.com. <a href=
 <section id="exercise" class="title-slide slide level1 center">
 <h1>Exercise</h1>
 <ul>
-<li>Read <code>bootstrap.R</code> and understand what is going on.</li>
-<li>Run <code>profbootstrap.R</code> to see where most of the time is spent - where?</li>
+<li>Read <a href="slides/examples/optimization/bootstrap.R"><code>bootstrap.R</code></a> and understand what is going on.</li>
+<li>Run <a href="slides/examples/optimization/profbootstrap.R"><code>profbootstrap.R</code></a> to see where most of the time is spent - where?</li>
 <li>In a second version of the function, <code>impl_2</code>, only update vectors inside the loop and then create a <code>tibble</code> once at the end.</li>
 <li>In a third version <code>impl_3</code> only subset the column instead of the whole <code>data.frame</code>. How much faster does it get?</li>
 <li>In a fourth version <code>impl_4</code> use the <a href="https://cran.r-project.org/package=boot"><code>boot</code></a> package.</li>
