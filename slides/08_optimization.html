@@ -517,11 +517,12 @@
 <span id="cb2-4"><a href="#cb2-4"></a><span class="fu">summaryRprof</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>$by.self
-                  self.time self.pct total.time total.pct
-"profvis::pause"       0.40    83.33       0.40     83.33
-"lazyLoadDBfetch"      0.04     8.33       0.04      8.33
-"gzfile"               0.02     4.17       0.02      4.17
-"stopifnot"            0.02     4.17       0.02      4.17
+                 self.time self.pct total.time total.pct
+"profvis::pause"      0.40    83.33       0.40     83.33
+"is"                  0.02     4.17       0.02      4.17
+"lapply"              0.02     4.17       0.02      4.17
+"match.arg"           0.02     4.17       0.02      4.17
+"readRDS"             0.02     4.17       0.02      4.17
 
 $by.total
                           total.time total.pct self.time self.pct
@@ -553,38 +554,31 @@ $by.total
 "loadNamespace"                 0.08     16.67      0.00     0.00
 "namespaceImport"               0.08     16.67      0.00     0.00
 "namespaceImportFrom"           0.08     16.67      0.00     0.00
-"doTryCatch"                    0.06     12.50      0.00     0.00
-"tryCatch"                      0.06     12.50      0.00     0.00
-"tryCatchList"                  0.06     12.50      0.00     0.00
-"tryCatchOne"                   0.06     12.50      0.00     0.00
-"lazyLoadDBfetch"               0.04      8.33      0.04     8.33
-"fun"                           0.04      8.33      0.00     0.00
-"runHook"                       0.04      8.33      0.00     0.00
-"gzfile"                        0.02      4.17      0.02     4.17
-"stopifnot"                     0.02      4.17      0.02     4.17
-".Call"                         0.02      4.17      0.00     0.00
-".checkGroupSigLength"          0.02      4.17      0.00     0.00
+".checkGroupSigLength"          0.04      8.33      0.00     0.00
+".updateMethodsInTable"         0.04      8.33      0.00     0.00
+"doTryCatch"                    0.04      8.33      0.00     0.00
+"methods::cacheMetaData"        0.04      8.33      0.00     0.00
+"Recall"                        0.04      8.33      0.00     0.00
+"tryCatch"                      0.04      8.33      0.00     0.00
+"tryCatchList"                  0.04      8.33      0.00     0.00
+"tryCatchOne"                   0.04      8.33      0.00     0.00
+"is"                            0.02      4.17      0.02     4.17
+"lapply"                        0.02      4.17      0.02     4.17
+"match.arg"                     0.02      4.17      0.02     4.17
+"readRDS"                       0.02      4.17      0.02     4.17
 ".recMembers"                   0.02      4.17      0.00     0.00
-".updateMethodsInTable"         0.02      4.17      0.00     0.00
-"&lt;Anonymous&gt;"                   0.02      4.17      0.00     0.00
-"callback"                      0.02      4.17      0.00     0.00
-"env_get"                       0.02      4.17      0.00     0.00
 "eval.parent"                   0.02      4.17      0.00     0.00
-"get"                           0.02      4.17      0.00     0.00
-"getGeneric"                    0.02      4.17      0.00     0.00
+"fun"                           0.02      4.17      0.00     0.00
+"get0"                          0.02      4.17      0.00     0.00
 "getGroupMembers"               0.02      4.17      0.00     0.00
-"is"                            0.02      4.17      0.00     0.00
+"getHook"                       0.02      4.17      0.00     0.00
 "lazyLoad"                      0.02      4.17      0.00     0.00
 "lazyLoadDBexec"                0.02      4.17      0.00     0.00
 "local"                         0.02      4.17      0.00     0.00
-"methods::cacheMetaData"        0.02      4.17      0.00     0.00
-"readRDS"                       0.02      4.17      0.00     0.00
-"Recall"                        0.02      4.17      0.00     0.00
-"replace_from"                  0.02      4.17      0.00     0.00
-"resolve"                       0.02      4.17      0.00     0.00
-"run_on_load"                   0.02      4.17      0.00     0.00
-"set2"                          0.02      4.17      0.00     0.00
-"setNames"                      0.02      4.17      0.00     0.00
+"on_package_load"               0.02      4.17      0.00     0.00
+"packageEvent"                  0.02      4.17      0.00     0.00
+"runHook"                       0.02      4.17      0.00     0.00
+"setHook"                       0.02      4.17      0.00     0.00
 "sys.source"                    0.02      4.17      0.00     0.00
 "try"                           0.02      4.17      0.00     0.00
 
@@ -1132,7 +1126,7 @@ Peng, Roger D. 2016. <em>R Programming for Data Science</em>. Lulu.com. <a href=
         }
       }
         var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-          var filterRegex = new RegExp("https:\/\/inferential-biostatistics\.github\.io\/workshop-r-swe-zrh\/");
+          var filterRegex = new RegExp("https:\/\/RCONIS\.github\.io\/workshop-r-swe-zrh\/");
         var isInternal = (href) => {
             return filterRegex.test(href) || localhostRegex.test(href);
         }

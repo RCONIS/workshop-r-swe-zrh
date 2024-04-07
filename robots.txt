@@ -1,1 +1,1 @@
-Sitemap: https://inferential-biostatistics.github.io/workshop-r-swe-zrh/sitemap.xml
+Sitemap: https://RCONIS.github.io/workshop-r-swe-zrh/sitemap.xml
