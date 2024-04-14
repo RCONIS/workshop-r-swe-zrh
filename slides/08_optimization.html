@@ -517,12 +517,12 @@
 <span id="cb2-4"><a href="#cb2-4"></a><span class="fu">summaryRprof</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>$by.self
-                       self.time self.pct total.time total.pct
-"profvis::pause"            0.40    83.33       0.40     83.33
-".checkGroupSigLength"      0.02     4.17       0.02      4.17
-"c"                         0.02     4.17       0.02      4.17
-"lazyLoadDBfetch"           0.02     4.17       0.02      4.17
-"readRDS"                   0.02     4.17       0.02      4.17
+                 self.time self.pct total.time total.pct
+"profvis::pause"      0.40    83.33       0.40     83.33
+"lapply"              0.02     4.17       0.06     12.50
+"$"                   0.02     4.17       0.02      4.17
+"file.exists"         0.02     4.17       0.02      4.17
+"strsplit"            0.02     4.17       0.02      4.17
 
 $by.total
                           total.time total.pct self.time self.pct
@@ -554,22 +554,22 @@ $by.total
 "loadNamespace"                 0.08     16.67      0.00     0.00
 "namespaceImport"               0.08     16.67      0.00     0.00
 "namespaceImportFrom"           0.08     16.67      0.00     0.00
-".checkGroupSigLength"          0.02      4.17      0.02     4.17
-"c"                             0.02      4.17      0.02     4.17
-"lazyLoadDBfetch"               0.02      4.17      0.02     4.17
-"readRDS"                       0.02      4.17      0.02     4.17
+"lapply"                        0.06     12.50      0.02     4.17
+"$"                             0.02      4.17      0.02     4.17
+"file.exists"                   0.02      4.17      0.02     4.17
+"strsplit"                      0.02      4.17      0.02     4.17
+".checkGroupSigLength"          0.02      4.17      0.00     0.00
+".make_numeric_version"         0.02      4.17      0.00     0.00
 ".updateMethodsInTable"         0.02      4.17      0.00     0.00
+"as.numeric_version"            0.02      4.17      0.00     0.00
 "assignNativeRoutines"          0.02      4.17      0.00     0.00
-"doTryCatch"                    0.02      4.17      0.00     0.00
-"fun"                           0.02      4.17      0.00     0.00
+"find.package"                  0.02      4.17      0.00     0.00
 "FUN"                           0.02      4.17      0.00     0.00
-"lapply"                        0.02      4.17      0.00     0.00
+"library.dynam"                 0.02      4.17      0.00     0.00
 "methods::cacheMetaData"        0.02      4.17      0.00     0.00
+"numeric_version"               0.02      4.17      0.00     0.00
+"Ops.numeric_version"           0.02      4.17      0.00     0.00
 "Recall"                        0.02      4.17      0.00     0.00
-"runHook"                       0.02      4.17      0.00     0.00
-"tryCatch"                      0.02      4.17      0.00     0.00
-"tryCatchList"                  0.02      4.17      0.00     0.00
-"tryCatchOne"                   0.02      4.17      0.00     0.00
 
 $sample.interval
 [1] 0.02
