@@ -517,65 +517,73 @@
 <span id="cb2-4"><a href="#cb2-4"></a><span class="fu">summaryRprof</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>$by.self
-                 self.time self.pct total.time total.pct
-"profvis::pause"      0.40    83.33       0.40     83.33
-"lapply"              0.02     4.17       0.06     12.50
-"$"                   0.02     4.17       0.02      4.17
-"file.exists"         0.02     4.17       0.02      4.17
-"strsplit"            0.02     4.17       0.02      4.17
+                                   self.time self.pct total.time total.pct
+"profvis::pause"                        0.40       80       0.40        80
+"namespaceImportFrom"                   0.02        4       0.08        16
+".getClassesFromCache"                  0.02        4       0.02         4
+"apply"                                 0.02        4       0.02         4
+"getDLLRegisteredRoutines.DLLInfo"      0.02        4       0.02         4
+"getExprSrcref"                         0.02        4       0.02         4
 
 $by.total
-                          total.time total.pct self.time self.pct
-".main"                         0.48    100.00      0.00     0.00
-"block_exec"                    0.48    100.00      0.00     0.00
-"call_block"                    0.48    100.00      0.00     0.00
-"eng_r"                         0.48    100.00      0.00     0.00
-"eval_with_user_handlers"       0.48    100.00      0.00     0.00
-"eval"                          0.48    100.00      0.00     0.00
-"evaluate_call"                 0.48    100.00      0.00     0.00
-"evaluate::evaluate"            0.48    100.00      0.00     0.00
-"evaluate"                      0.48    100.00      0.00     0.00
-"execute"                       0.48    100.00      0.00     0.00
-"f"                             0.48    100.00      0.00     0.00
-"handle"                        0.48    100.00      0.00     0.00
-"in_dir"                        0.48    100.00      0.00     0.00
-"in_input_dir"                  0.48    100.00      0.00     0.00
-"knitr::knit"                   0.48    100.00      0.00     0.00
-"process_file"                  0.48    100.00      0.00     0.00
-"process_group.block"           0.48    100.00      0.00     0.00
-"process_group"                 0.48    100.00      0.00     0.00
-"rmarkdown::render"             0.48    100.00      0.00     0.00
-"timing_fn"                     0.48    100.00      0.00     0.00
-"withCallingHandlers"           0.48    100.00      0.00     0.00
-"withVisible"                   0.48    100.00      0.00     0.00
-"profvis::pause"                0.40     83.33      0.40    83.33
-"g"                             0.30     62.50      0.00     0.00
-"asNamespace"                   0.08     16.67      0.00     0.00
-"loadNamespace"                 0.08     16.67      0.00     0.00
-"namespaceImport"               0.08     16.67      0.00     0.00
-"namespaceImportFrom"           0.08     16.67      0.00     0.00
-"lapply"                        0.06     12.50      0.02     4.17
-"$"                             0.02      4.17      0.02     4.17
-"file.exists"                   0.02      4.17      0.02     4.17
-"strsplit"                      0.02      4.17      0.02     4.17
-".checkGroupSigLength"          0.02      4.17      0.00     0.00
-".make_numeric_version"         0.02      4.17      0.00     0.00
-".updateMethodsInTable"         0.02      4.17      0.00     0.00
-"as.numeric_version"            0.02      4.17      0.00     0.00
-"assignNativeRoutines"          0.02      4.17      0.00     0.00
-"find.package"                  0.02      4.17      0.00     0.00
-"FUN"                           0.02      4.17      0.00     0.00
-"library.dynam"                 0.02      4.17      0.00     0.00
-"methods::cacheMetaData"        0.02      4.17      0.00     0.00
-"numeric_version"               0.02      4.17      0.00     0.00
-"Ops.numeric_version"           0.02      4.17      0.00     0.00
-"Recall"                        0.02      4.17      0.00     0.00
+                                   total.time total.pct self.time self.pct
+".main"                                  0.50       100      0.00        0
+"block_exec"                             0.50       100      0.00        0
+"call_block"                             0.50       100      0.00        0
+"eng_r"                                  0.50       100      0.00        0
+"eval_with_user_handlers"                0.50       100      0.00        0
+"eval"                                   0.50       100      0.00        0
+"evaluate_call"                          0.50       100      0.00        0
+"evaluate::evaluate"                     0.50       100      0.00        0
+"evaluate"                               0.50       100      0.00        0
+"execute"                                0.50       100      0.00        0
+"f"                                      0.50       100      0.00        0
+"handle"                                 0.50       100      0.00        0
+"in_dir"                                 0.50       100      0.00        0
+"in_input_dir"                           0.50       100      0.00        0
+"knitr::knit"                            0.50       100      0.00        0
+"process_file"                           0.50       100      0.00        0
+"process_group.block"                    0.50       100      0.00        0
+"process_group"                          0.50       100      0.00        0
+"rmarkdown::render"                      0.50       100      0.00        0
+"timing_fn"                              0.50       100      0.00        0
+"withCallingHandlers"                    0.50       100      0.00        0
+"withVisible"                            0.50       100      0.00        0
+"profvis::pause"                         0.40        80      0.40       80
+"g"                                      0.32        64      0.00        0
+"namespaceImportFrom"                    0.08        16      0.02        4
+"asNamespace"                            0.08        16      0.00        0
+"loadNamespace"                          0.08        16      0.00        0
+"namespaceImport"                        0.08        16      0.00        0
+".getClassesFromCache"                   0.02         4      0.02        4
+"apply"                                  0.02         4      0.02        4
+"getDLLRegisteredRoutines.DLLInfo"       0.02         4      0.02        4
+"getExprSrcref"                          0.02         4      0.02        4
+".checkGroupSigLength"                   0.02         4      0.00        0
+".recMembers"                            0.02         4      0.00        0
+".updateMethodsInTable"                  0.02         4      0.00        0
+"assignNativeRoutines"                   0.02         4      0.00        0
+"cmpfun"                                 0.02         4      0.00        0
+"compiler:::tryCmpfun"                   0.02         4      0.00        0
+"doTryCatch"                             0.02         4      0.00        0
+"find.package"                           0.02         4      0.00        0
+"genCode"                                0.02         4      0.00        0
+"getClassDef"                            0.02         4      0.00        0
+"getGroupMembers"                        0.02         4      0.00        0
+"is"                                     0.02         4      0.00        0
+"library.dynam"                          0.02         4      0.00        0
+"make.codeBuf"                           0.02         4      0.00        0
+"methods::cacheMetaData"                 0.02         4      0.00        0
+"Recall"                                 0.02         4      0.00        0
+"tryCatch"                               0.02         4      0.00        0
+"tryCatchList"                           0.02         4      0.00        0
+"tryCatchOne"                            0.02         4      0.00        0
 
 $sample.interval
 [1] 0.02
 
 $sampling.time
-[1] 0.48</code></pre>
+[1] 0.5</code></pre>
 </div>
 </div>
 </section>

@@ -1,51 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://RCONIS.github.io/workshop-r-swe-zrh/listing.html</loc>
-    <lastmod>2024-04-14T18:47:27.579Z</lastmod>
-  </url>
-  <url>
-    <loc>https://RCONIS.github.io/workshop-r-swe-zrh/slides/01_intro.html</loc>
-    <lastmod>2024-04-14T18:47:26.035Z</lastmod>
-  </url>
-  <url>
-    <loc>https://RCONIS.github.io/workshop-r-swe-zrh/slides/03_workflow.html</loc>
-    <lastmod>2024-04-14T18:47:23.483Z</lastmod>
-  </url>
-  <url>
-    <loc>https://RCONIS.github.io/workshop-r-swe-zrh/slides/07_shiny.html</loc>
-    <lastmod>2024-04-14T18:47:19.211Z</lastmod>
-  </url>
-  <url>
-    <loc>https://RCONIS.github.io/workshop-r-swe-zrh/slides/05_collaboration.html</loc>
-    <lastmod>2024-04-14T18:47:16.503Z</lastmod>
-  </url>
-  <url>
-    <loc>https://RCONIS.github.io/workshop-r-swe-zrh/slides/04_quality.html</loc>
-    <lastmod>2024-04-14T18:47:13.283Z</lastmod>
-  </url>
-  <url>
-    <loc>https://RCONIS.github.io/workshop-r-swe-zrh/index.html</loc>
-    <lastmod>2024-04-14T18:47:10.899Z</lastmod>
-  </url>
-  <url>
-    <loc>https://RCONIS.github.io/workshop-r-swe-zrh/slides/08_optimization.html</loc>
-    <lastmod>2024-04-14T18:47:15.227Z</lastmod>
-  </url>
-  <url>
-    <loc>https://RCONIS.github.io/workshop-r-swe-zrh/slides/06_publication.html</loc>
-    <lastmod>2024-04-14T18:47:17.659Z</lastmod>
+    <loc>https://RCONIS.github.io/workshop-r-swe-zrh/LICENSE.html</loc>
+    <lastmod>2024-05-14T08:41:40.708Z</lastmod>
   </url>
   <url>
     <loc>https://RCONIS.github.io/workshop-r-swe-zrh/slides/02_r_packages.html</loc>
-    <lastmod>2024-04-14T18:47:20.731Z</lastmod>
+    <lastmod>2024-05-14T08:41:38.172Z</lastmod>
+  </url>
+  <url>
+    <loc>https://RCONIS.github.io/workshop-r-swe-zrh/slides/04_quality.html</loc>
+    <lastmod>2024-05-14T08:41:35.544Z</lastmod>
+  </url>
+  <url>
+    <loc>https://RCONIS.github.io/workshop-r-swe-zrh/slides/03_workflow.html</loc>
+    <lastmod>2024-05-14T08:41:31.708Z</lastmod>
+  </url>
+  <url>
+    <loc>https://RCONIS.github.io/workshop-r-swe-zrh/slides/06_publication.html</loc>
+    <lastmod>2024-05-14T08:41:27.004Z</lastmod>
+  </url>
+  <url>
+    <loc>https://RCONIS.github.io/workshop-r-swe-zrh/index.html</loc>
+    <lastmod>2024-05-14T08:41:23.596Z</lastmod>
+  </url>
+  <url>
+    <loc>https://RCONIS.github.io/workshop-r-swe-zrh/listing.html</loc>
+    <lastmod>2024-05-14T08:41:21.820Z</lastmod>
+  </url>
+  <url>
+    <loc>https://RCONIS.github.io/workshop-r-swe-zrh/slides/08_optimization.html</loc>
+    <lastmod>2024-05-14T08:41:25.704Z</lastmod>
+  </url>
+  <url>
+    <loc>https://RCONIS.github.io/workshop-r-swe-zrh/slides/01_intro.html</loc>
+    <lastmod>2024-05-14T08:41:28.732Z</lastmod>
+  </url>
+  <url>
+    <loc>https://RCONIS.github.io/workshop-r-swe-zrh/slides/05_collaboration.html</loc>
+    <lastmod>2024-05-14T08:41:33.096Z</lastmod>
   </url>
   <url>
     <loc>https://RCONIS.github.io/workshop-r-swe-zrh/slides/09_conclusion.html</loc>
-    <lastmod>2024-04-14T18:47:24.407Z</lastmod>
+    <lastmod>2024-05-14T08:41:36.520Z</lastmod>
   </url>
   <url>
-    <loc>https://RCONIS.github.io/workshop-r-swe-zrh/LICENSE.html</loc>
-    <lastmod>2024-04-14T18:47:26.867Z</lastmod>
+    <loc>https://RCONIS.github.io/workshop-r-swe-zrh/slides/07_shiny.html</loc>
+    <lastmod>2024-05-14T08:41:39.828Z</lastmod>
   </url>
 </urlset>
