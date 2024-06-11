@@ -11,7 +11,7 @@
   <meta name="generator" content="quarto-1.3.450">
 
   <meta name="dcterms.date" content="2024-04-18">
-  <title>GSWEP4R Workshop - 8 Code Optimization</title>
+  <title>GSWEP4R Workshop - 10 Reproducibility</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -94,26 +94,7 @@
     code span.va { color: #111111; } /* Variable */
     code span.vs { color: #20794d; } /* VerbatimString */
     code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
-    /* CSS for citations */
-    div.csl-bib-body { }
-    div.csl-entry {
-      clear: both;
-    }
-    .hanging-indent div.csl-entry {
-      margin-left:2em;
-      text-indent:-2em;
-    }
-    div.csl-left-margin {
-      min-width:2em;
-      float:left;
-    }
-    div.csl-right-inline {
-      margin-left:2em;
-      padding-left:1em;
-    }
-    div.csl-indent {
-      margin-left: 2em;
-    }  </style>
+  </style>
   <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto.css">
   <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
@@ -409,7 +390,7 @@
     <div class="slides">
 
 <section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">8 Code Optimization</h1>
+  <h1 class="title">10 Reproducibility</h1>
   <p class="subtitle"><code>openstatsware</code> Workshop: Good Software Engineering Practice for R Packages</p>
 
 <div class="quarto-title-authors">
@@ -419,237 +400,548 @@
 </section>
 <section id="acknowledgments" class="slide level2">
 <h2>Acknowledgments</h2>
-<p>This section is adapted from slides by Lukas A. Widmer and Michael Mayer, which they prepared and released under the CC BY 4.0 license, see their course <a href="https://luwidmer.github.io/fastR-website/materials.html">Go fastR – how to make R code fast(er) and run it on high performance compute (HPC) clusters</a>.</p>
-<p>Thanks a lot Lukas and Michael!</p>
+<p>This section is based on and adapted from great (Quarto) slides by Louisa Smith, see her course website <a href="https://epi590r-2023.louisahsmith.com/about">R Bootcamp (EPI590R) from Northeastern University</a>.</p>
+<p>Thanks a lot Louisa!</p>
 </section>
+<section id="overview" class="title-slide slide level1 center">
+<h1>Overview</h1>
+<ul>
+<li>Literate programming: Quarto</li>
+<li>Package environment: <code>renv</code></li>
+<li>Exercise on how to use them together</li>
+</ul>
+</section>
+
 <section>
-<section id="introduction" class="title-slide slide level1 center">
-<h1>Introduction</h1>
+<section id="literate-programming-quarto" class="title-slide slide level1 center">
+<h1>Literate Programming: Quarto</h1>
 
 </section>
-<section id="a-word-of-wisdom" class="slide level2">
-<h2>A Word of Wisdom</h2>
-
-<img data-src="screenshots/2024-03-17-22-24-36.png" class="r-stretch"><p><span class="citation" data-cites="knuth1974structured">(<a href="#/references" role="doc-biblioref" onclick="">Knuth 1974, 268</a>)</span></p>
+<section id="what-is-quarto" class="slide level2">
+<h2>What is Quarto?</h2>
+<ul>
+<li>Format of a book or pamphlet produced from full sheets printed with eight pages of text, four to a side, then folded twice to produce four leaves (<a href="https://en.wikipedia.org/wiki/Quarto">Wikipedia</a>)</li>
+</ul>
+<div class="columns">
+<div class="column" style="width:70%;">
+<ul>
+<li>An open-source scientific and technical publishing system (<a href="https://quarto.org/">Quarto.org</a>)
+<ul>
+<li>Integrates text, code, and output</li>
+<li>Can create multiple different types of products (documents, slides, websites, books)</li>
+</ul></li>
+</ul>
+</div><div class="column" style="width:30%;">
+<div class="quarto-figure quarto-figure-right">
+<figure>
+<p><img data-src="https://github.com/rstudio/hex-stickers/blob/main/PNG/quarto.png?raw=true" style="width:80.0%"></p>
+</figure>
+</div>
+</div>
+</div>
 </section>
-<section id="setting-the-right-priorities" class="slide level2">
-<h2>Setting the right priorities</h2>
+<section id="why-not-r-markdown" class="slide level2">
+<h2>Why not R Markdown?</h2>
+<p>Only because Quarto is newer and more featured!</p>
+<ul>
+<li>Almost everything you already know how to do in R Markdown you can do in Quarto, and more!
+<ul>
+<li>See a comparison <a href="https://quarto.org/docs/faq/rmarkdown.html#i-use-x-bookdown-blogdown-etc..-what-is-the-quarto-equivalent">here</a></li>
+</ul></li>
+<li>All of these slides, website, etc. are all made in Quarto.</li>
+<li>If you know and love R Markdown, you can keep using it
+<ul>
+<li>There are no plans for deprecation of R Markdown</li>
+</ul></li>
+</ul>
+</section>
+<section id="quarto-workflow" class="slide level2">
+<h2>Quarto workflow</h2>
 <ol type="1">
-<li>The code needs to be correct, i.e.&nbsp;calculate correct results as expected. → <strong>Tests</strong>, <strong>Debugging</strong></li>
-<li>If it is correct, but too slow, then find out which calculations and why they are too slow. → <strong>Profiling</strong></li>
-<li>Once you identified the slow parts, optimize those. → <strong>Code optimization</strong></li>
-<li>If executing the code on your laptop is still too slow → consider running it instead on a high performance cluster (<strong>HPC</strong>), see slides from Lukas and Michael</li>
+<li>Create a Quarto document</li>
+<li>Write code (in R, Python, Julia, or Observable JavaScript)</li>
+<li>Write text (with markdown syntax)</li>
+<li>Repeat 2-3 in whatever order you want</li>
+<li>Render</li>
 </ol>
 </section>
-<section id="tests-see-previous-section" class="slide level2">
-<h2>Tests: see previous <a href="04_quality.qmd">section</a></h2>
+<section id="how-does-the-rendering-work" class="slide level2">
+<h2>How does the rendering work?</h2>
+<ul>
+<li><code>knitr</code> processes the code chunks, executes the R code, and inserts the code outputs (e.g., plots, tables) back into the markdown document</li>
+<li><code>pandoc</code> transforms the markdown document into various output formats</li>
+</ul>
 
-<img data-src="resources/testing.png" class="r-stretch"><p>(modified from <span class="citation" data-cites="xkcd">Munroe (<a href="#/references" role="doc-biblioref" onclick="">2007</a>)</span>, <a href="https://xkcd.com/303/">No.&nbsp;303</a>)</p>
+<img data-src="https://github.com/louisahsmith/epi590r-2023/blob/main/day-2/slides/images/2b931008-dc7c-4bec-92cb-112a55126975.png?raw=true" class="r-stretch"></section>
+<section id="text-and-code" class="slide level2">
+<h2>Text and code…</h2>
+<div class="sourceCode" id="cb1"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># My header</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>Some text</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>Some *italic text*</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>Some **bold text**</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Eggs</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Milk</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">3</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>x</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="debugging-a-few-pointers" class="slide level2">
-<h2>Debugging: A few pointers</h2>
+<section id="becomes" class="slide level2">
+<h2>… becomes …</h2>
+<h3 id="my-header">My header</h3>
+<p>Some text</p>
+<p>Some <em>italic text</em></p>
+<p>Some <strong>bold text</strong></p>
+<ul>
+<li>Eggs</li>
+<li>Milk</li>
+</ul>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 3</code></pre>
+</div>
+</div>
+</section>
+<section id="r-chunks" class="slide level2">
+<h2>R chunks</h2>
+<p>Everything within the R chunks has to be valid R.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb3-1"><a href="#cb3-1"></a><span class="in">```{r}</span></span>
+<span id="cb3-2"><a href="#cb3-2"></a>x <span class="ot">&lt;-</span> <span class="dv">3</span></span>
+<span id="cb3-3"><a href="#cb3-3"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb4-1"><a href="#cb4-1"></a><span class="in">```{r}</span></span>
+<span id="cb4-2"><a href="#cb4-2"></a>x <span class="sc">+</span> <span class="dv">4</span></span>
+<span id="cb4-3"><a href="#cb4-3"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 7</code></pre>
+</div>
+</div>
+<p>Chunks run in order, continuously, like a single script.</p>
+</section>
+<section id="yaml" class="slide level2">
+<h2>YAML</h2>
+<p>At the top of your Quarto document, a header written in <em>yaml</em> describes options for the document:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource yml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb6-1"><a href="#cb6-1"></a><span class="pp">---</span></span>
+<span id="cb6-2"><a href="#cb6-2"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"My document"</span></span>
+<span id="cb6-3"><a href="#cb6-3"></a><span class="fu">author</span><span class="kw">:</span><span class="at"> Louisa Smith</span></span>
+<span id="cb6-4"><a href="#cb6-4"></a><span class="fu">format</span><span class="kw">:</span><span class="at"> html</span></span>
+<span id="cb6-5"><a href="#cb6-5"></a><span class="pp">---</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>There are a <em>ton</em> of possible options (more below), but importantly, this determines the document output.</p>
+</section>
+<section id="output" class="slide level2">
+<h2>Output</h2>
+
+<img data-src="https://github.com/louisahsmith/epi590r-2023/blob/main/day-2/slides/images/6f28e7d4-3394-43f9-8b0d-41c52de3883f.png?raw=true" class="r-stretch"></section>
+<section id="section" class="slide level2" data-background-iframe="https://quarto.org/docs/output-formats/all-formats.html" data-background-interactive="true">
+<h2></h2>
+</section>
+<section id="chunk-options" class="slide level2">
+<h2>Chunk options</h2>
+<p>For example, to suppress the code printing:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: false</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="sc">*</span> <span class="dv">2</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><code>#| echo: false</code> tells <code>knitr</code> to exclude the source code from the output.</p>
+
+<aside><div>
+<p>In RMarkdown, you would have written this <code>{r, echo = FALSE}</code>. You can still do that with Quarto, but it’s generally easier to read, particularly for long options (like caption titles)</p>
+</div></aside></section>
+<section id="chunk-options-1" class="slide level2">
+<h2>Chunk options</h2>
+<p>Additional chunk options which are often used:</p>
+<ul>
+<li><code>#| eval: false</code>: Don’t evaluate this chunk! Just print the code.</li>
+<li><code>#| error: true</code>: Render this <em>even if</em> the chunk causes an error.</li>
+<li><code>#| warning: false</code>: Don’t print warnings.</li>
+<li><code>#| include: false</code>: Suppresses all output from the code block.</li>
+<li><code>#| cache: true</code>: Use <code>knitr</code> caching mechanism for this chunk.</li>
+</ul>
+</section>
+<section id="document-options" class="slide level2">
+<h2>Document options</h2>
+<p>You can tell the <em>entire</em> document not to evaluate or print code (so just include the text!) at the top:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode numberSource yml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb8-1"><a href="#cb8-1"></a><span class="pp">---</span></span>
+<span id="cb8-2"><a href="#cb8-2"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"My document"</span></span>
+<span id="cb8-3"><a href="#cb8-3"></a><span class="fu">author</span><span class="kw">:</span><span class="at"> Louisa Smith</span></span>
+<span id="cb8-4"><a href="#cb8-4"></a><span class="fu">format</span><span class="kw">:</span><span class="at"> html</span></span>
+<span id="cb8-5"><a href="#cb8-5"></a><span class="fu">execute</span><span class="kw">:</span></span>
+<span id="cb8-6"><a href="#cb8-6"></a><span class="at">  </span><span class="fu">eval</span><span class="kw">:</span><span class="at"> </span><span class="ch">false</span></span>
+<span id="cb8-7"><a href="#cb8-7"></a><span class="at">  </span><span class="fu">echo</span><span class="kw">:</span><span class="at"> </span><span class="ch">false</span></span>
+<span id="cb8-8"><a href="#cb8-8"></a><span class="pp">---</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Careful! YAML is <em>really</em> picky about spacing.</p>
+</section>
+<section id="document-options-1" class="slide level2">
+<h2>Document options</h2>
+<p>There are <a href="https://quarto.org/docs/reference/formats/html.html">lots of different options</a> for the document.</p>
+<ul>
+<li>For example, you can choose a <a href="https://quarto.org/docs/output-formats/html-themes.html">theme</a>:</li>
+</ul>
+<div class="sourceCode" id="cb9"><pre class="sourceCode numberSource yml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb9-1"><a href="#cb9-1"></a><span class="pp">---</span></span>
+<span id="cb9-2"><a href="#cb9-2"></a><span class="fu">format</span><span class="kw">:</span></span>
+<span id="cb9-3"><a href="#cb9-3"></a><span class="at">  </span><span class="fu">html</span><span class="kw">:</span></span>
+<span id="cb9-4"><a href="#cb9-4"></a><span class="at">    </span><span class="fu">theme</span><span class="kw">:</span><span class="at"> yeti</span></span>
+<span id="cb9-5"><a href="#cb9-5"></a><span class="pp">---</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>Remember the pickiness: when you have a format option, <code>html:</code> moves to a new line and the options are indented 2 spaces</li>
+</ul>
+</section>
+<section id="chunks-can-produce-figures-and-tables" class="slide level2">
+<h2>Chunks can produce figures and tables</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb10-1"><a href="#cb10-1"></a><span class="in">```{r}</span></span>
+<span id="cb10-2"><a href="#cb10-2"></a><span class="co">#| label: tbl-one</span></span>
+<span id="cb10-3"><a href="#cb10-3"></a><span class="co">#| tbl-cap: "This is a great table"</span></span>
+<span id="cb10-4"><a href="#cb10-4"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(mtcars[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>,])</span>
+<span id="cb10-5"><a href="#cb10-5"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="tbl-one">
+<table>
+<caption>Table&nbsp;1: This is a great table</caption>
+<colgroup>
+<col style="width: 21%">
+<col style="width: 7%">
+<col style="width: 6%">
+<col style="width: 7%">
+<col style="width: 6%">
+<col style="width: 7%">
+<col style="width: 9%">
+<col style="width: 9%">
+<col style="width: 4%">
+<col style="width: 4%">
+<col style="width: 7%">
+<col style="width: 7%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: right;">mpg</th>
+<th style="text-align: right;">cyl</th>
+<th style="text-align: right;">disp</th>
+<th style="text-align: right;">hp</th>
+<th style="text-align: right;">drat</th>
+<th style="text-align: right;">wt</th>
+<th style="text-align: right;">qsec</th>
+<th style="text-align: right;">vs</th>
+<th style="text-align: right;">am</th>
+<th style="text-align: right;">gear</th>
+<th style="text-align: right;">carb</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Mazda RX4</td>
+<td style="text-align: right;">21.0</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">160</td>
+<td style="text-align: right;">110</td>
+<td style="text-align: right;">3.90</td>
+<td style="text-align: right;">2.620</td>
+<td style="text-align: right;">16.46</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">4</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Mazda RX4 Wag</td>
+<td style="text-align: right;">21.0</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">160</td>
+<td style="text-align: right;">110</td>
+<td style="text-align: right;">3.90</td>
+<td style="text-align: right;">2.875</td>
+<td style="text-align: right;">17.02</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">4</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Datsun 710</td>
+<td style="text-align: right;">22.8</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">108</td>
+<td style="text-align: right;">93</td>
+<td style="text-align: right;">3.85</td>
+<td style="text-align: right;">2.320</td>
+<td style="text-align: right;">18.61</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">1</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</section>
+<section id="chunks-can-produce-figures-or-tables" class="slide level2">
+<h2>Chunks can produce figures or tables</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb11-1"><a href="#cb11-1"></a><span class="in">```{r}</span></span>
+<span id="cb11-2"><a href="#cb11-2"></a><span class="co">#| label: fig-hist</span></span>
+<span id="cb11-3"><a href="#cb11-3"></a><span class="co">#| fig-cap: "This is a histogram"</span></span>
+<span id="cb11-4"><a href="#cb11-4"></a><span class="fu">hist</span>(<span class="fu">rnorm</span>(<span class="dv">100</span>))</span>
+<span id="cb11-5"><a href="#cb11-5"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="10_reproducibility_files/figure-revealjs/fig-hist-1.png" width="960" class="r-stretch quarto-figure-center"><p class="caption">Figure&nbsp;1: This is a histogram</p></section>
+<section id="cross-referencing" class="slide level2">
+<h2>Cross-referencing</h2>
+<p>You can then refer to those with <code>@tbl-one</code> and <code>@fig-hist</code> and the Table and Figure ordering will be correct (and linked)</p>
+<div class="larger-code">
+<pre><code>@fig-hist contains a histogram and @tbl-one a table.</code></pre>
+</div>
+<p>gets printed as:</p>
+<p><a href="#/fig-hist">Figure&nbsp;1</a> contains a histogram and <a href="#/chunks-can-produce-figures-and-tables">Table&nbsp;1</a> a table.</p>
+</section>
+<section id="inline-r" class="slide level2">
+<h2>Inline R</h2>
+<p>Along with just regular text, you can also run R code <em>within</em> the text:</p>
+<div class="larger-code">
+<pre><code>There were `r 3 + 4` participants</code></pre>
+</div>
+<p>becomes:</p>
+<p>There were 7 participants</p>
+</section>
+<section id="inline-stats" class="slide level2">
+<h2>Inline stats</h2>
+<p>You might want to create list of stats that you want to report in your manuscript:</p>
+<p>I can then print these numbers in the text with:</p>
+<p>There were <code>`r stats$n`</code> participants with a mean age of <code>`r stats$mean_age`</code>.</p>
+<p>which turns into:</p>
+<p>There were 1123 participants with a mean age of 43.5.</p>
+</section></section>
+<section>
+<section id="package-environment-renv" class="title-slide slide level1 center">
+<h1>Package Environment: <code>{renv}</code></h1>
+
+</section>
+<section id="what-is-renv" class="slide level2">
+<h2>What is <code>{renv}</code>?</h2>
+<div class="columns">
+<div class="column" style="width:70%;">
+<p><code>{renv}</code> is an R package for managing project dependencies and creating reproducible package environments.</p>
+</div><div class="column" style="width:30%;">
+<div class="center">
+<p><img data-src="https://rstudio.github.io/renv/logo.svg" style="height:20.0%"></p>
+</div>
+</div>
+</div>
+</section>
+<section id="benefits-of-using-renv" class="slide level2">
+<h2>Benefits of using <code>{renv}</code></h2>
 <ol type="1">
-<li>Post-hoc <code>traceback()</code> after code fails, to show the call stack and see how the error came about.</li>
-<li>Setting <code>debug(myfun)</code> for the problematic function <code>myfun</code> and then run the code to step through its execution.</li>
-<li>Inject <code>browser()</code> calls into problematic code to add “breakpoints” for interactive execution and inspection.</li>
-<li>Setting <code>options(error = recover)</code> and then running the problematic code allows you to jump into the call stack and inspect. (Undo with <code>options(error = NULL)</code>)</li>
+<li><strong>Isolation:</strong> Installing a new or updated package for one project won’t break your other projects, and vice versa. That’s because <code>{renv}</code> gives each project its own, private, library of R packages.</li>
+<li><strong>Reproducibility:</strong> <code>{renv}</code> records the exact package versions you depend on, and ensures those exact versions are the ones that get installed wherever you go.</li>
+<li><strong>Portability:</strong> Easily transport your projects from one computer to another, even across different platforms. <code>{renv}</code> makes it easy to install the packages your project depends on.</li>
 </ol>
 </section>
-<section id="debugging-some-rstudio-specifics" class="slide level2">
-<h2>Debugging: Some RStudio specifics</h2>
-<p>Let’s have a look at RStudio IDE specific details.</p>
-<ul>
-<li>The “Debug” menu can be useful to explore the options.</li>
-<li>Editor breakpoints: Can add with click to the left of line number and gives “red dot”.</li>
-<li>Click on “Source” to run the script and enter debug mode.</li>
-<li>“Debug” &gt; “On Error” &gt; “Break in Code” again lets you jump into the code on error.</li>
-<li>Debugging in Rmarkdown documents can be tricky, either proceed chunk by chunk, or try <code>sink()</code></li>
-</ul>
-<p>See <a href="https://support.posit.co/hc/en-us/articles/205612627-Debugging-with-the-RStudio-IDE">Posit website</a> for details.</p>
-</section></section>
-<section>
-<section id="profiling" class="title-slide slide level1 center">
-<h1>Profiling</h1>
-
-</section>
-<section id="profiling-definition" class="slide level2">
-<h2>Profiling: Definition</h2>
-<blockquote>
-<p>In software engineering, profiling (“program profiling”, “software profiling”) is a form of dynamic program analysis that measures, for example, the space (memory) or time complexity of a program, the usage of particular instructions, or the frequency and duration of function calls. Most commonly, profiling information serves to aid program optimization, and more specifically, performance engineering.</p>
-</blockquote>
-<p>(<a href="https://en.wikipedia.org/wiki/Profiling_(computer_programming)">Wikipedia</a>)</p>
-</section>
-<section id="profiling-example-code" class="slide level2">
-<h2>Profiling: Example code</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a>f <span class="ot">&lt;-</span> <span class="cf">function</span>() {</span>
-<span id="cb1-2"><a href="#cb1-2"></a>    profvis<span class="sc">::</span><span class="fu">pause</span>(<span class="fl">0.1</span>)</span>
-<span id="cb1-3"><a href="#cb1-3"></a>    <span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq_len</span>(<span class="dv">3</span>)) {</span>
-<span id="cb1-4"><a href="#cb1-4"></a>        <span class="fu">g</span>()</span>
-<span id="cb1-5"><a href="#cb1-5"></a>    }</span>
-<span id="cb1-6"><a href="#cb1-6"></a>}</span>
-<span id="cb1-7"><a href="#cb1-7"></a>g <span class="ot">&lt;-</span> <span class="cf">function</span>() {</span>
-<span id="cb1-8"><a href="#cb1-8"></a>    profvis<span class="sc">::</span><span class="fu">pause</span>(<span class="fl">0.1</span>)</span>
-<span id="cb1-9"><a href="#cb1-9"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section id="profiling-lets-identify-the-bottlenecks" class="slide level2">
-<h2>Profiling: Let’s identify the bottlenecks!</h2>
-<p>In R there are a couple of basic functions for profiling:</p>
-<ul>
-<li><code>system.time()</code></li>
-<li><code>Rprof</code>:
+<section id="getting-started-with-renv" class="slide level2">
+<h2>Getting Started with <code>{renv}</code></h2>
 <ol type="1">
-<li>start with <code>Rprof()</code></li>
-<li>execute the code</li>
-<li>stop with <code>Rprof(NULL)</code></li>
-<li>summarize with <code>summaryRprof()</code></li>
-</ol></li>
-</ul>
-<p>See e.g. <span class="citation" data-cites="peng2016">Peng (<a href="#/references" role="doc-biblioref" onclick="">2016</a>)</span>, chapter 19, for details.</p>
-</section>
-<section id="profiling-classic-rprof-output" class="slide level2">
-<h2>Profiling: Classic <code>Rprof</code> output</h2>
+<li><p>Install <code>{renv}</code> (only once):</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="fu">Rprof</span>()</span>
-<span id="cb2-2"><a href="#cb2-2"></a><span class="fu">f</span>()</span>
-<span id="cb2-3"><a href="#cb2-3"></a><span class="fu">Rprof</span>(<span class="cn">NULL</span>)</span>
-<span id="cb2-4"><a href="#cb2-4"></a><span class="fu">summaryRprof</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section id="profiling-getting-visual" class="slide level2">
-<h2>Profiling: Getting visual</h2>
-<p>We can use the more modern <a href="https://rstudio.github.io/profvis"><code>profvis</code></a> R package for visualizing where R spends its time during code execution.</p>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a><span class="fu">install.packages</span>(<span class="st">"renv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div></li>
+<li><p>Initialize a project (only once):</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="fu">library</span>(profvis)</span>
-<span id="cb3-2"><a href="#cb3-2"></a><span class="fu">source</span>(<span class="st">"profexample.R"</span>) <span class="co"># Such that the flame graph includes code lines.</span></span>
-<span id="cb3-3"><a href="#cb3-3"></a>prof <span class="ot">&lt;-</span> <span class="fu">profvis</span>({</span>
-<span id="cb3-4"><a href="#cb3-4"></a>    <span class="fu">f</span>()</span>
-<span id="cb3-5"><a href="#cb3-5"></a>})</span>
-<span id="cb3-6"><a href="#cb3-6"></a><span class="fu">print</span>(prof)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section id="profiling-profvis-output" class="slide level2">
-<h2>Profiling: <code>profvis</code> output</h2>
-
-<img data-src="screenshots/2024-03-24-21-51-38.png" class="r-stretch"></section></section>
-<section>
-<section id="code-optimization" class="title-slide slide level1 center">
-<h1>Code optimization</h1>
-
-</section>
-<section id="code-optimization-explore-alternatives" class="slide level2">
-<h2>Code optimization: Explore alternatives</h2>
-<ul>
-<li>If the slow function is from another package, search for a faster one</li>
-<li>Runtime complexity (runtime as a function of data size) of different algorithms can be wildly different - some work well on small data but take forever on large data</li>
-<li>Few examples:
-<ul>
-<li>For wrangling data frames, consider <a href="https://duckdblabs.github.io/duckplyr/"><code>duckplyr</code></a> and <a href="https://rpolars.github.io/"><code>polars</code></a> as alternatives to <a href="https://dplyr.tidyverse.org/"><code>dplyr</code></a></li>
-<li>To read and write CSV data, consider <a href="https://vroom.r-lib.org/"><code>vroom</code></a> instead of base R</li>
-<li>To read and write objects from and to disk, consider <a href="https://cran.r-project.org/package=qs"><code>qs</code></a> instead of base R <code>readRDS</code>, <code>saveRDS</code></li>
-</ul></li>
-</ul>
-</section>
-<section id="code-optimization-dry-on-data-frames" class="slide level2">
-<h2>Code optimization: DRY on data frames</h2>
-<ul>
-<li>Remember: DRY (Don’t Repeat Yourself)</li>
-<li>Data frames are expensive, i.e.&nbsp;take a lot of time.</li>
-<li>Some examples:
-<ul>
-<li>Only create data frames, if really necessary.
-<ul>
-<li>Bad: <code>if(nrow(filter(x, condition)) &gt; 0)</code></li>
-<li>Good: <code>if(any(condition))</code></li>
-</ul></li>
-<li>Assemble a data frame only once, not iteratively.</li>
-<li>When subsetting a data frame and working with a column, first extract the column and then subset.</li>
-</ul></li>
-</ul>
-</section>
-<section id="code-optimization-reuse-dont-copy" class="slide level2">
-<h2>Code optimization: Reuse, don’t copy</h2>
-<p>Avoid making unintended copies of objects.</p>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a>renv<span class="sc">::</span><span class="fu">init</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div></li>
+<li><p>Install packages:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="co"># Bad:</span></span>
-<span id="cb4-2"><a href="#cb4-2"></a>result <span class="ot">&lt;-</span> <span class="fu">c</span>()</span>
-<span id="cb4-3"><a href="#cb4-3"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">1000</span>) result <span class="ot">&lt;-</span> <span class="fu">c</span>(result, <span class="fu">fun</span>(i))</span>
-<span id="cb4-4"><a href="#cb4-4"></a><span class="co"># Good:</span></span>
-<span id="cb4-5"><a href="#cb4-5"></a>result <span class="ot">&lt;-</span> <span class="fu">numeric</span>(<span class="dv">1000</span>)</span>
-<span id="cb4-6"><a href="#cb4-6"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">1000</span>) result[i] <span class="ot">&lt;-</span> <span class="fu">fun</span>(i)</span>
-<span id="cb4-7"><a href="#cb4-7"></a><span class="co"># Better:</span></span>
-<span id="cb4-8"><a href="#cb4-8"></a>result <span class="ot">&lt;-</span> <span class="fu">sapply</span>(<span class="fu">seq_len</span>(<span class="dv">1000</span>), fun)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Other examples:</p>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a><span class="fu">install.packages</span>(<span class="st">"other_package"</span>)</span>
+<span id="cb16-2"><a href="#cb16-2"></a><span class="co"># Below only works because we use `renv` here:</span></span>
+<span id="cb16-3"><a href="#cb16-3"></a><span class="fu">install.packages</span>(<span class="st">"github_user/github_package"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div></li>
+<li><p>Track dependencies via a “lockfile”:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a>renv<span class="sc">::</span><span class="fu">snapshot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div></li>
+</ol>
+</section>
+<section id="behind-the-scenes" class="slide level2">
+<h2>Behind the scenes</h2>
 <ul>
-<li>Create a <code>data.frame</code> once from complete column vectors, rather than <code>rbind()</code> it iteratively.</li>
-<li>Subsetting a matrix or <code>data.frame</code> will create a copy, so use it consciously or better work with columns.</li>
+<li><p>Your project <code>.Rprofile</code> is updated to include:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a><span class="fu">source</span>(<span class="st">"renv/activate.R"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div></li>
+<li><p>This is run every time R starts, and does some management of the library paths to make sure when you call <code>install.packges("package")</code> or <code>library(package)</code> it uses the private library</p></li>
+<li><p>An <code>renv.lock</code> file (really just a text file) is created to store the names and versions of the packages. This is the “lockfile” mentioned above.</p></li>
 </ul>
 </section>
-<section id="code-optimization-vectorize-where-possible" class="slide level2">
-<h2>Code optimization: Vectorize where possible</h2>
+<section id="renv.lock" class="slide level2">
+<h2><code>renv.lock</code></h2>
+<div class="sourceCode" id="cb19"><pre class="sourceCode numberSource json number-lines code-with-copy"><code class="sourceCode json"><span id="cb19-1"><a href="#cb19-1"></a><span class="fu">{</span></span>
+<span id="cb19-2"><a href="#cb19-2"></a>  <span class="dt">"R"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb19-3"><a href="#cb19-3"></a>    <span class="dt">"Version"</span><span class="fu">:</span> <span class="st">"4.3.0"</span><span class="fu">,</span></span>
+<span id="cb19-4"><a href="#cb19-4"></a>    <span class="dt">"Repositories"</span><span class="fu">:</span> <span class="ot">[</span></span>
+<span id="cb19-5"><a href="#cb19-5"></a>      <span class="fu">{</span></span>
+<span id="cb19-6"><a href="#cb19-6"></a>        <span class="dt">"Name"</span><span class="fu">:</span> <span class="st">"CRAN"</span><span class="fu">,</span></span>
+<span id="cb19-7"><a href="#cb19-7"></a>        <span class="dt">"URL"</span><span class="fu">:</span> <span class="st">"https://cran.rstudio.com"</span></span>
+<span id="cb19-8"><a href="#cb19-8"></a>      <span class="fu">}</span></span>
+<span id="cb19-9"><a href="#cb19-9"></a>    <span class="ot">]</span></span>
+<span id="cb19-10"><a href="#cb19-10"></a>  <span class="fu">},</span></span>
+<span id="cb19-11"><a href="#cb19-11"></a>  <span class="dt">"Packages"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb19-12"><a href="#cb19-12"></a>    <span class="dt">"R6"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb19-13"><a href="#cb19-13"></a>      <span class="dt">"Package"</span><span class="fu">:</span> <span class="st">"R6"</span><span class="fu">,</span></span>
+<span id="cb19-14"><a href="#cb19-14"></a>      <span class="dt">"Version"</span><span class="fu">:</span> <span class="st">"2.5.1"</span><span class="fu">,</span></span>
+<span id="cb19-15"><a href="#cb19-15"></a>      <span class="dt">"Source"</span><span class="fu">:</span> <span class="st">"Repository"</span><span class="fu">,</span></span>
+<span id="cb19-16"><a href="#cb19-16"></a>      <span class="dt">"Repository"</span><span class="fu">:</span> <span class="st">"CRAN"</span><span class="fu">,</span></span>
+<span id="cb19-17"><a href="#cb19-17"></a>      <span class="dt">"Requirements"</span><span class="fu">:</span> <span class="ot">[</span></span>
+<span id="cb19-18"><a href="#cb19-18"></a>        <span class="st">"R"</span></span>
+<span id="cb19-19"><a href="#cb19-19"></a>      <span class="ot">]</span><span class="fu">,</span></span>
+<span id="cb19-20"><a href="#cb19-20"></a>      <span class="dt">"Hash"</span><span class="fu">:</span> <span class="st">"470851b6d5d0ac559e9d01bb352b4021"</span></span>
+<span id="cb19-21"><a href="#cb19-21"></a>    <span class="fu">},</span></span>
+<span id="cb19-22"><a href="#cb19-22"></a>    <span class="er">base64enc</span><span class="dt">": {</span></span>
+<span id="cb19-23"><a href="#cb19-23"></a><span class="dt">      "</span><span class="er">Package</span><span class="dt">": "</span><span class="er">base64enc</span><span class="dt">",</span></span>
+<span id="cb19-24"><a href="#cb19-24"></a><span class="dt">      "</span><span class="er">Version</span><span class="dt">": "</span><span class="er">0.1-3</span><span class="dt">",</span></span>
+<span id="cb19-25"><a href="#cb19-25"></a><span class="dt">      "</span><span class="er">Source</span><span class="dt">": "</span><span class="er">Repository</span><span class="dt">",</span></span>
+<span id="cb19-26"><a href="#cb19-26"></a><span class="dt">      "</span><span class="er">Repository</span><span class="dt">": "</span><span class="er">CRAN</span><span class="dt">",</span></span>
+<span id="cb19-27"><a href="#cb19-27"></a><span class="dt">      "</span><span class="er">Requirements</span><span class="dt">": [</span></span>
+<span id="cb19-28"><a href="#cb19-28"></a><span class="dt">        "</span><span class="er">R</span><span class="dt">"</span></span>
+<span id="cb19-29"><a href="#cb19-29"></a><span class="dt">      ],</span></span>
+<span id="cb19-30"><a href="#cb19-30"></a><span class="dt">      "</span><span class="er">Hash</span><span class="dt">": "</span><span class="er">543776ae6848fde2f48ff3816d0628bc</span><span class="dt">"</span></span>
+<span id="cb19-31"><a href="#cb19-31"></a><span class="dt">    },</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="using-renv-later" class="slide level2">
+<h2>Using <code>{renv}</code> later</h2>
 <ul>
-<li>Avoiding for loops does not help much anymore.</li>
-<li>However, using specialized vectorized functions (implemented in compiled code) helps:
+<li><p>Restore an environment:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a>renv<span class="sc">::</span><span class="fu">restore</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div></li>
+<li><p>Install new packages:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a><span class="fu">install.packages</span>(<span class="st">"other_package"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div></li>
+<li><p>Update the lockfile:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a>renv<span class="sc">::</span><span class="fu">snapshot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div></li>
+</ul>
+</section>
+<section id="collaboration-with-renv" class="slide level2">
+<h2>Collaboration with <code>{renv}</code></h2>
 <ul>
-<li>Base R: <code>rowSums()</code>, <code>colSums()</code>, <code>rowMeans()</code>, <code>colMeans()</code></li>
-<li><a href="https://github.com/HenrikBengtsson/matrixStats"><code>matrixStats</code></a>: many! <code>anyMissing()</code>, <code>colQuantiles()</code>, <code>rowMax()</code>, etc.</li>
-<li><a href="https://sebkrantz.github.io/collapse/"><code>collapse</code></a>: <code>fmean()</code>, <code>TRA()</code>, <code>GRP()</code>, …</li>
+<li><p>Share the project’s <code>renv.lock</code> file with collaborators to ensure consistent environments</p>
+<ul>
+<li>With <code>git</code>, you’ll need to commit <code>renv.lock</code>, <code>.Rprofile</code>, <code>renv/settings.json</code> and <code>renv/activate.R</code>. This is particularly simple because <code>{renv}</code> will create a <code>.gitignore</code> for you, and you can just commit all suggested files.</li>
+</ul></li>
+<li><p>When they run <code>renv::restore()</code>, the correct versions of the packages will be installed on their computer</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a>renv<span class="sc">::</span><span class="fu">restore</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div></li>
+</ul>
+</section>
+<section id="other-helpful-functions" class="slide level2">
+<h2>Other helpful functions</h2>
+<ul>
+<li><p>Remove packages that are no longer used:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a>renv<span class="sc">::</span><span class="fu">clean</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div></li>
+<li><p>Check the status of the project library with respect to the lockfile:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1"></a>renv<span class="sc">::</span><span class="fu">status</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>This will tell you to <code>renv::snapshot()</code> to add packages you’ve installed but haven’t snapshotted, or <code>renv::restore()</code> if you’re missing packages you need but which aren’t installed.</p></li>
+<li><p>Update packages which are out-of-date (only checked from their original source):</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1"></a>renv<span class="sc">::</span><span class="fu">update</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div></li>
+</ul>
+</section>
+<section id="package-development-with-renv" class="slide level2">
+<h2>Package Development with <code>{renv}</code></h2>
+<ul>
+<li><p>Install all of your package’s dependencies as per <code>DESCRIPTION</code> file:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1"></a>renv<span class="sc">::</span><span class="fu">install</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div></li>
+<li><p>If you need to test your package with other development versions, use <code>Remotes</code> field and a project specific library:</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb28-1"><a href="#cb28-1"></a><span class="fu">Remotes</span><span class="kw">:</span></span>
+<span id="cb28-2"><a href="#cb28-2"></a><span class="at">  r-lib/ggplot2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>In order to avoid <code>R CMD build</code> performance hit, by default, <code>{renv}</code> will create a package project specific library <em>outside</em> of the directory.</p>
+<ul>
+<li>Exact location may be controlled with environment variable <code>RENV_PATHS_LIBRARY_ROOT</code></li>
 </ul></li>
 </ul>
 </section>
-<section id="code-optimization-still-too-slow" class="slide level2">
-<h2>Code optimization: Still too slow?</h2>
-<blockquote>
-<p>“R is a language optimized for human performance, not computer performance”</p>
-</blockquote>
-<p>(Hadley Wickham, New York R Conference, 2018)</p>
-</section>
-<section id="code-optimization-shift-to-c-with-rcpp" class="slide level2">
-<h2>Code optimization: Shift to C++ with <code>Rcpp</code></h2>
-<p>Writing and using C++ code in your R package is not easy.</p>
-<p>But it is not too difficult with <a href="https://dirk.eddelbuettel.com/code/rcpp.html"><code>Rcpp</code></a> by <span class="citation" data-cites="Eddelbuettel2011">Eddelbuettel and François (<a href="#/references" role="doc-biblioref" onclick="">2011</a>)</span>.</p>
+<section id="package-development-with-renv-contd" class="slide level2">
+<h2>Package Development with <code>{renv}</code> (cont’d)</h2>
 <ul>
-<li>Starting point: <code>Rcpp::Rcpp.package.skeleton()</code></li>
-<li>Use <a href="https://dirk.eddelbuettel.com/code/rcpp.armadillo.html"><code>RcppArmadillo</code></a> for linear algebra</li>
-<li>Hadley Wickham’s chapter <a href="https://adv-r.hadley.nz/rcpp.html">Rewriting R code in C++</a></li>
+<li>Continuous integration (CI) is well supported
+<ul>
+<li><p>Basic idea is to <code>renv::restore()</code> the package environment on the CI machine, and use provided cache as best as possible</p></li>
+<li><p>Example: GitHub Actions (details are given <a href="https://rstudio.github.io/renv/articles/ci.html#github-actions">here</a>)</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb29-1"><a href="#cb29-1"></a><span class="fu">steps</span><span class="kw">:</span></span>
+<span id="cb29-2"><a href="#cb29-2"></a><span class="kw">-</span><span class="at"> </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> actions/checkout@v3</span></span>
+<span id="cb29-3"><a href="#cb29-3"></a><span class="kw">-</span><span class="at"> </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> r-lib/actions/setup-r@v2</span></span>
+<span id="cb29-4"><a href="#cb29-4"></a><span class="kw">-</span><span class="at"> </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> r-lib/actions/setup-renv@v2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+</ul></li>
+<li>Ignore the <code>{renv}</code> lockfile and the package folder when building the tarball for CRAN submission
+<ul>
+<li><code>{renv}</code> should automatically edit <code>.Rbuildignore</code> accordingly, just good to double check</li>
+</ul></li>
 </ul>
-<p>Note: Adding C++ code to your package will in many cases increase the maintenance effort significantly.</p>
 </section>
-<section id="references" class="slide level2 smaller scrollable">
-<h2>References</h2>
-<div id="refs" class="references csl-bib-body hanging-indent" role="list">
-<div id="ref-Eddelbuettel2011" class="csl-entry" role="listitem">
-Eddelbuettel, Dirk, and Romain François. 2011. <span>“<span>Rcpp</span>: Seamless <span>R</span> and <span>C++</span> Integration.”</span> <em>Journal of Statistical Software</em> 40 (8): 1–18. <a href="https://doi.org/10.18637/jss.v040.i08">https://doi.org/10.18637/jss.v040.i08</a>.
-</div>
-<div id="ref-knuth1974structured" class="csl-entry" role="listitem">
-Knuth, Donald E. 1974. <span>“Structured Programming with Go to Statements.”</span> <em>ACM Computing Surveys (CSUR)</em> 6 (4): 261–301. <a href="https://web.archive.org/web/20130731202547/http://pplab.snu.ac.kr/courses/adv_pl05/papers/p261-knuth.pdf">https://web.archive.org/web/20130731202547/http://pplab.snu.ac.kr/courses/adv_pl05/papers/p261-knuth.pdf</a>.
-</div>
-<div id="ref-xkcd" class="csl-entry" role="listitem">
-Munroe, Randall. 2007. <span>“Xkcd.”</span> 2007. <a href="http://xkcd.com/">http://xkcd.com/</a>.
-</div>
-<div id="ref-peng2016" class="csl-entry" role="listitem">
-Peng, Roger D. 2016. <em>R Programming for Data Science</em>. Lulu.com. <a href="https://bookdown.org/rdpeng/rprogdatascience/">https://bookdown.org/rdpeng/rprogdatascience/</a>.
-</div>
-</div>
+<section id="conclusion" class="slide level2">
+<h2>Conclusion</h2>
+<p><code>{renv}</code> benefits are <strong>isolation</strong>, <strong>reproducibility</strong>, and <strong>portability</strong>.</p>
+<p>Getting started with <code>{renv}</code>:</p>
+<ol type="1">
+<li>Initialize a project using <code>renv::init()</code>.</li>
+<li>Install packages and then save with <code>renv::snapshot()</code>.</li>
+<li>Restore later or elsewhere with <code>renv::restore()</code>.</li>
+</ol>
 </section></section>
+<section>
 <section id="exercise" class="title-slide slide level1 center">
 <h1>Exercise</h1>
-<ul>
-<li>Read <a href="examples/optimization/bootstrap.R"><code>bootstrap.R</code></a> and understand what is going on.</li>
-<li>Run <a href="examples/optimization/profbootstrap.R"><code>profbootstrap.R</code></a> to see where most of the time is spent - where?</li>
-<li>In a second version of the function, <code>impl_2</code>, only update vectors inside the loop and then create a <code>tibble</code> once at the end.</li>
-<li>In a third version <code>impl_3</code> only subset the column instead of the whole <code>data.frame</code>. How much faster does it get?</li>
-<li>In a fourth version <code>impl_4</code> use the <a href="https://cran.r-project.org/package=boot"><code>boot</code></a> package.</li>
-<li>Homework: Try to come up with a fifth version <code>impl_5</code> that uses <code>Rcpp</code>. Was it worth the effort?</li>
-</ul>
-</section>
 
+</section>
+<section id="exercise-1-create-a-quarto-project-with-renv" class="slide level2">
+<h2>Exercise 1: Create a Quarto Project with <code>{renv}</code></h2>
+<ol type="1">
+<li>Create a new Quarto project via File &gt; New Project &gt; New Directory &gt; Quarto Project in RStudio.</li>
+<li>Enable the use of <code>{renv}</code></li>
+<li>Create Project</li>
+<li>Write a short introduction and perform a simple analysis</li>
+<li>Render the document</li>
+</ol>
+</section>
+<section id="exercise-2-use-renv-for-dependencies" class="slide level2">
+<h2>Exercise 2: Use <code>{renv}</code> for dependencies</h2>
+<ol type="1">
+<li><p>Add any additional R packages your analysis needs:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1"></a><span class="fu">install.packages</span>(<span class="st">"RQuantLib"</span>) <span class="co"># Example non-standard package</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div></li>
+<li><p>Check <code>renv::status()</code> and the lockfile - did anything change?</p></li>
+<li><p>Now use the additional R package in your Quarto document:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1"></a><span class="fu">library</span>(<span class="st">"RQuantLib"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div></li>
+<li><p>Check the status again and record the state with <code>renv::snapshot()</code></p></li>
+<li><p>Close the project and confirm that the package is not available anymore</p></li>
+<li><p>Open the project and confirm that the package is available</p></li>
+</ol>
+</section></section>
 <section id="license-information" class="title-slide slide level1 center">
 <h1>License Information</h1>
 <ul>
-<li>Creators (initial authors): Lukas A. Widmer and Michael Mayer, see their course <a href="https://luwidmer.github.io/fastR-website/materials.html">Go fastR – how to make R code fast(er) and run it on high performance compute (HPC) clusters</a></li>
+<li>Creators (initial authors): Louisa Smith <a href="https://www.linkedin.com/in/louisahsmith/"><svg aria-hidden="true" role="img" viewbox="0 0 448 512" style="height:1em;width:0.88em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"></path></svg></a>, see her course website <a href="https://epi590r-2023.louisahsmith.com/about">R Bootcamp (EPI590R) from Northeastern University</a></li>
 <li>In the current version, changes were done by (later author): Daniel Sabanes Bove <a href="https://github.com/danielinteractive/"><svg aria-hidden="true" role="img" viewbox="0 0 496 512" style="height:1em;width:0.97em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"></path></svg></a> <a href="https://www.linkedin.com/in/danielsabanesbove/"><svg aria-hidden="true" role="img" viewbox="0 0 448 512" style="height:1em;width:0.88em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"></path></svg></a></li>
 <li>This work is licensed under the <a href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.</li>
 <li>The source files are hosted at <a href="https://github.com/RCONIS/workshop-r-swe-zrh">github.com/RCONIS/workshop-r-swe-zrh</a>, which is forked from the original version at <a href="https://github.com/openpharma/workshop-r-swe-mtl/">github.com/openpharma/workshop-r-swe-mtl</a>.</li>

@@ -368,7 +368,7 @@
     "href": "slides/01_intro.html#speed-intros-and-what-would-you-like-to-learn",
     "title": "1 Introduction",
     "section": "Speed intros and what would you like to learn?",
-    "text": "Speed intros and what would you like to learn?\n\nName? 🙉\nOrganization? 🏢\nMotivation for this workshop/ what would you like to learn 🧠\nFavorite food? 🥑\nFavorite music? 🎶"
+    "text": "Speed intros and what would you like to learn?\n\nName? 🐵\nOrganization? 🏢\nMotivation for this workshop/ what would you like to learn 🧠\nFavorite food? 🥒\nFavorite music? 🎺"
   },
   {
     "objectID": "slides/01_intro.html#what-do-we-mean-by-gswep4r",
@@ -404,349 +404,6 @@
     "title": "1 Introduction",
     "section": "Pharma perspective: GxP + R  = ",
     "text": "Pharma perspective: GxP + R  = \n\nCore infrastructure packages only through industry\nQuality, burden sharing: open-source pharmaverse and openstatsware\nOpen methodological packages can de-risk innovative methods\nR packages make (statistical/methodological) code\n\ntestable (with documented evidence thereof, CFR Part 11)\nreusable\nshareable\neasier to document"
-  },
-  {
-    "objectID": "slides/05_collaboration.html#disclaimer",
-    "href": "slides/05_collaboration.html#disclaimer",
-    "title": "5 Version Control & Collaboration",
-    "section": "Disclaimer",
-    "text": "Disclaimer\n\nAny opinions expressed in this presentation and on the following slides are solely those of the presenter and not necessarily those of their respective employer or company."
-  },
-  {
-    "objectID": "slides/05_collaboration.html#section",
-    "href": "slides/05_collaboration.html#section",
-    "title": "5 Version Control & Collaboration",
-    "section": "",
-    "text": "Overview, demo, practical\nCan only scratch surface\nMore resources on website\n\n\n\nPhoto by Rich @ rhubbardstockfootage on Unsplash"
-  },
-  {
-    "objectID": "slides/05_collaboration.html#trade-offs-in-code-development",
-    "href": "slides/05_collaboration.html#trade-offs-in-code-development",
-    "title": "5 Version Control & Collaboration",
-    "section": "Trade-offs in code development",
-    "text": "Trade-offs in code development\n\n\n\nWorking alone\n\nno coordination overhead\nno review\nlack of diversity\ncan slack on documentation\nfragile long-term maintenance\n\n\nWorking in a team\n\ncoordination overhead\nmutual review of code\ndifferent approaches\nforced to document\nmore robust long-term maintenance"
-  },
-  {
-    "objectID": "slides/05_collaboration.html#section-1",
-    "href": "slides/05_collaboration.html#section-1",
-    "title": "5 Version Control & Collaboration",
-    "section": "",
-    "text": "Key issue: Manage complexity over time or between people\n\n\nPhoto from Tim Mossholder on Unsplash"
-  },
-  {
-    "objectID": "slides/05_collaboration.html#version-control-systems-vcs",
-    "href": "slides/05_collaboration.html#version-control-systems-vcs",
-    "title": "5 Version Control & Collaboration",
-    "section": "Version control systems (VCS)",
-    "text": "Version control systems (VCS)\n\nManage different versions of a piece of work\nCompare and merge diverged versions effectively1\n\n\n\n\n\nflowchart LR\n  A[Daniel v1] --&gt; B[Daniel v2]\n  B --&gt; C[Daniel v3]\n  B --&gt; D[Lukas v1]\n  D --&gt; E[Lukas + Daniel v4]\n  C --&gt; E\n\n\n\n\n\n\nCode is complex system \\(\\leadsto\\) ideal application of VCS\nCompounded by multiple people ‘fiddling’ with it!\n\nMerging parallel edits is not simple (try it in MS Word 365)"
-  },
-  {
-    "objectID": "slides/05_collaboration.html#enter-git-the-latin-of-data-science",
-    "href": "slides/05_collaboration.html#enter-git-the-latin-of-data-science",
-    "title": "5 Version Control & Collaboration",
-    "section": "Enter git  the ‘Latin of data science’",
-    "text": "Enter git  the ‘Latin of data science’\n\n\n\n\n\nAuthor Linus Torvalds, for work on Linux kernel\nEssentially a database with snapshots of a monitored ‘repository’ (directory)\nOptimized to compute line-based changes\nIntegrated in RStudio IDE, Visual Studio Code\nDe facto standard not just in the R world\nAlternatives: mercurial, SVN, …\n\n\n\n\nPhoto by Lf Asia & the Archive Team CC BY 3.0"
-  },
-  {
-    "objectID": "slides/05_collaboration.html#stage-commit",
-    "href": "slides/05_collaboration.html#stage-commit",
-    "title": "5 Version Control & Collaboration",
-    "section": "Stage & commit",
-    "text": "Stage & commit\n\n\n\n\n\n\n\n\ngitGraph\n   commit\n   commit\n   commit\n   commit\n   commit\n\n\n\n\n\n\n‘Stage’ changes for inspection\n\nallows to inspect propose changes before locking them in\n\nPermanently ‘commit’ changes to git\n\n\\(\\leadsto\\) Chain of versions with incremental changes\n\n\n\nPhoto by Felicia Montenegro on Unsplash"
-  },
-  {
-    "objectID": "slides/05_collaboration.html#line-based-differences---the-diff",
-    "href": "slides/05_collaboration.html#line-based-differences---the-diff",
-    "title": "5 Version Control & Collaboration",
-    "section": "Line-based differences - the ‘diff’",
-    "text": "Line-based differences - the ‘diff’\n\n\nChanges in git are line-based\nAdditions (green) & deletions (red) between commits"
-  },
-  {
-    "objectID": "slides/05_collaboration.html#going-back-in-time",
-    "href": "slides/05_collaboration.html#going-back-in-time",
-    "title": "5 Version Control & Collaboration",
-    "section": "Going back in time",
-    "text": "Going back in time\n\n\n\n\n\nEvery commit has unique hash value\nCan ‘checkout’ old commit (browse history)\n\ngit checkout [commit hash to browse]\n\nCan ‘reset’ changes\n\ngit reset --hard [commit hash to reset to]\n\nRemoves need for my-file_final_v2_2019.R\nTime travelling has its dangers…1\n\n\n\n\nPhoto by Mila Tovar on Unsplash\n\nNever change published history!"
-  },
-  {
-    "objectID": "slides/05_collaboration.html#branching",
-    "href": "slides/05_collaboration.html#branching",
-    "title": "5 Version Control & Collaboration",
-    "section": "Branching",
-    "text": "Branching\n\n\n\n\n\n\n\n\ngitGraph\n   commit\n   commit\n   branch feature\n   checkout feature\n   commit\n   commit\n   checkout main\n   commit\n\n\n\n\n\n\nVariations of repository: ‘branches’\n\ngit checkout -b [my new branch]\n\nQuick switching between branches\n\ngit checkout [branch name]\n\n\n\nPhoto by Mila Tovar on Unsplash"
-  },
-  {
-    "objectID": "slides/05_collaboration.html#merging-two-branches",
-    "href": "slides/05_collaboration.html#merging-two-branches",
-    "title": "5 Version Control & Collaboration",
-    "section": "‘Merging’ two branches",
-    "text": "‘Merging’ two branches\n\n\n\n\n\n\n\n\ngitGraph\n   commit\n   commit\n   branch feature\n   checkout feature\n   commit\n   commit\n   checkout main\n   commit\n   merge feature\n\n\n\n\n\n\nConsolidate diverged ‘branches’\nUsually merged automergically\nConflicting changes \nLine edited in source/target branch - keep which?\nResolving merge conflicts beyond today’s scope\n\n\n\n\nPhoto by Max LaRochelle on Unsplash"
-  },
-  {
-    "objectID": "slides/05_collaboration.html#example-of-gitflow",
-    "href": "slides/05_collaboration.html#example-of-gitflow",
-    "title": "5 Version Control & Collaboration",
-    "section": "Example of ‘gitflow’",
-    "text": "Example of ‘gitflow’\n\n\n\n\ngitGraph\n   commit tag: \"v0.0.1\"\n   commit\n   branch feature-1\n   checkout feature-1\n   commit\n   commit\n   checkout main\n   branch feature-2\n   checkout feature-2\n   commit\n   checkout feature-1\n   commit\n   checkout main\n   commit tag: \"bugfix\"\n   merge feature-1 tag: \"v0.1.0\"\n   checkout feature-2\n   commit\n\n\n\n\n\n\n‘gitflow’: specific workflow for git repositories\nfeatures developed on branches, then merged into ‘main’"
-  },
-  {
-    "objectID": "slides/05_collaboration.html#version-control-collaboration",
-    "href": "slides/05_collaboration.html#version-control-collaboration",
-    "title": "5 Version Control & Collaboration",
-    "section": "Version Control & Collaboration",
-    "text": "Version Control & Collaboration\n\ngit itself is command line tool for version control\ngit platforms add UI for collaboration1\n\nGitHub.com de facto standard in R (one alternative is e.g. GitLab.com)\n\ngit + GitHub\n\nVCS (git)\nWeb hosting of code (GitHub)\nOrganisation with issues, discussions (GitHub)\nAutomation of checks/test (GitHub)\n\n\nAll platforms also available on-premise for enterprise use"
-  },
-  {
-    "objectID": "slides/05_collaboration.html#github.com",
-    "href": "slides/05_collaboration.html#github.com",
-    "title": "5 Version Control & Collaboration",
-    "section": "GitHub.com ",
-    "text": "GitHub.com \n\nHuge number of R packages developed there:\n\nggplot2\ndplyr\npharmaverse\n\n100 million developers on GitHub.com (Jan ’23), see GitHub blog\n372 million repositories, 28 million public (Jan ’23)\n‘Facebook’ of developers / social coding\nDiscuss problems / propose changes"
-  },
-  {
-    "objectID": "slides/05_collaboration.html#branches-pull-requests",
-    "href": "slides/05_collaboration.html#branches-pull-requests",
-    "title": "5 Version Control & Collaboration",
-    "section": "Branches & pull requests",
-    "text": "Branches & pull requests\n\nBranches are a git concept\nGit platforms add concept of ‘pull request’ (PR)\n\nPR is ‘suggested merge’ from branch A to B\nUsually from ‘feature A’ to ‘main’\n\nAllow to preview problems before merge and discuss changes\nOnce everyone is happy, a pull request1 can be merged\nEvery PR has an associated branch, but not every branch has a PR\nMore in the demo!\n\ntechnically its associated branch"
-  },
-  {
-    "objectID": "slides/05_collaboration.html#automating-things-with-github",
-    "href": "slides/05_collaboration.html#automating-things-with-github",
-    "title": "5 Version Control & Collaboration",
-    "section": "Automating things with GitHub",
-    "text": "Automating things with GitHub\n\nGitHub provides\n\ncloud compute\nscripting framework (GitHub actions)\n\nAllows task automation, e.g.\n\nrun unit tests\nbuild & host documentation\nstatic code analysis (linting)\n\nMost important actions for R: github.com/r-lib/actions\nExtremely useful to enforce best-practices & quality"
-  },
-  {
-    "objectID": "slides/05_collaboration.html#a-typical-github-workflow",
-    "href": "slides/05_collaboration.html#a-typical-github-workflow",
-    "title": "5 Version Control & Collaboration",
-    "section": "A typical GitHub workflow",
-    "text": "A typical GitHub workflow\n\n\n\n\nsequenceDiagram\n    participant A as Daniel\n    participant GH as GitHub server\n    participant B as Lukas\n    A-&gt;&gt;A: make change locally & commit to &lt;feature&gt;\n    A-&gt;&gt;GH: push commit\n    A-&gt;&gt;GH: open pull request\n    GH-&gt;&gt;GH: run automated checks\n    A-&gt;&gt;B: request review\n    B-&gt;&gt;B: review code\n    B-&gt;&gt;A: request changes\n    A-&gt;&gt;A: implement changes locally & commit\n    A-&gt;&gt;GH: push commit\n    GH-&gt;&gt;GH: run automated checks\n    A-&gt;&gt;B: request review\n    B-&gt;&gt;B: review code\n    B-&gt;&gt;GH: approve changes, unblocking merge\n    A-&gt;&gt;GH: merge &lt;feature&gt; into &lt;main&gt;\n    GH-&gt;&gt;GH: run automated checks on &lt;main&gt;\n    B-&gt;&gt;GH: pull newest version of &lt;main&gt;"
-  },
-  {
-    "objectID": "slides/05_collaboration.html#looks-awfully-complicated-why",
-    "href": "slides/05_collaboration.html#looks-awfully-complicated-why",
-    "title": "5 Version Control & Collaboration",
-    "section": "Looks awfully complicated, why?",
-    "text": "Looks awfully complicated, why?\n\nEfficient collaboration with novice/untrusted contributors\n\nMaintainer: automated checks reduce review burden\nContributor: no need to check manually\n\nBranching promotes asynchronous work on features\nFull history - can always go back\n\n\\(\\leadsto\\) making code-collaboration scalable"
-  },
-  {
-    "objectID": "slides/05_collaboration.html#demo",
-    "href": "slides/05_collaboration.html#demo",
-    "title": "5 Version Control & Collaboration",
-    "section": "Demo",
-    "text": "Demo\n\nThanks to Lukas Graz for helping me in this demo!\nHow does a pull request work?\nFirst steps for setting up the next practical\nDon’t panic - steps are all documented at  https://github.com/kkmann/simulatr"
-  },
-  {
-    "objectID": "slides/05_collaboration.html#practical---collaboration-on-github",
-    "href": "slides/05_collaboration.html#practical---collaboration-on-github",
-    "title": "5 Version Control & Collaboration",
-    "section": "Practical - collaboration on GitHub",
-    "text": "Practical - collaboration on GitHub\n\nWork in teams of ~ 3 or 4\nGo to https://github.com/kkmann/simulatr and read through the instructions in the README.md file\nThe repository is a template to practice collaboration on GitHub\nOnly one member per team needs to use the template and invite the others as collaborators!\nTake some time to checkout the README.md file and set up your environment in posit cloud\nCan you fix the errors with some pull requests?\nThe purpose of this exercise is to explore the collaboration functionality of GitHub - not to produce a perfect package ;)"
-  },
-  {
-    "objectID": "slides/09_conclusion.html#thank-you-zurich-r-courses-team",
-    "href": "slides/09_conclusion.html#thank-you-zurich-r-courses-team",
-    "title": "9 Conclusion",
-    "section": "Thank you Zurich R Courses team!",
-    "text": "Thank you Zurich R Courses team!\n\nLena Götz for the course organization\nLukas Graz for the course assistance\nCarolin Strobl for the initial setup"
-  },
-  {
-    "objectID": "slides/09_conclusion.html#enter-slido.com-2189872",
-    "href": "slides/09_conclusion.html#enter-slido.com-2189872",
-    "title": "9 Conclusion",
-    "section": "Enter slido.com: 2189872",
-    "text": "Enter slido.com: 2189872"
-  },
-  {
-    "objectID": "slides/09_conclusion.html#r-package-structure",
-    "href": "slides/09_conclusion.html#r-package-structure",
-    "title": "9 Conclusion",
-    "section": "R package structure",
-    "text": "R package structure\n\nR package = folder structure with (many) conventions\nWith modern tools usethis, roxygen2 it is easy to start a new package\nPackaging a set of functions is an ideal way to share with collaborators and the public\nStart small and simple and over time you can learn additional options"
-  },
-  {
-    "objectID": "slides/09_conclusion.html#engineering-workflow",
-    "href": "slides/09_conclusion.html#engineering-workflow",
-    "title": "9 Conclusion",
-    "section": "Engineering Workflow",
-    "text": "Engineering Workflow\n\nUse a workable workflow:\nIdea \\(\\rightarrow\\) Design docs \\(\\rightarrow\\) Programming \\(\\rightarrow\\) Quality check \\(\\rightarrow\\) Publication\n\nDon’t waste time on maintenance\nBe faster with release on CRAN\nFulfill quality requirements of yourself and stakeholders\n\nRefactor your one-off scripts that you want to use in a package\nUse assertions for all arguments \\(\\rightarrow\\) better user experience\nImplement common generics like print and plot"
-  },
-  {
-    "objectID": "slides/09_conclusion.html#ensuring-quality",
-    "href": "slides/09_conclusion.html#ensuring-quality",
-    "title": "9 Conclusion",
-    "section": "Ensuring Quality",
-    "text": "Ensuring Quality\n\nApply common clean code rules, e.g.,\n\nUse testthat to test, test, and test\nUse covr to improve the test coverage\nUse styler to optimize the code styling\nDon’t repeat yourself!\n\nYour rewards are:\n\nMaintainability,\nExtensibility, and\nPerformance!"
-  },
-  {
-    "objectID": "slides/09_conclusion.html#collaboration",
-    "href": "slides/09_conclusion.html#collaboration",
-    "title": "9 Conclusion",
-    "section": "Collaboration",
-    "text": "Collaboration\n\nVersion control is key\n\nMultiple people working on code without strong VC \\(\\leadsto\\) disaster!\nThere are different options, but git is the defacto standard for R packages\nGit needs a friend - use platforms like GitHub or GitLab\n\nAutomated CI/CD allows for much quicker iteration\n\nAutomate tests to avoid bugs slipping back in\n\nTechnology does not solve everything - foster a positive culture\n\nKeep internal and external contributors engaged\nInvest in documentation to make it easier to contribute"
-  },
-  {
-    "objectID": "slides/09_conclusion.html#publication",
-    "href": "slides/09_conclusion.html#publication",
-    "title": "9 Conclusion",
-    "section": "Publication",
-    "text": "Publication\n\npkgdown can help you easily create a nice website for your package\nVersions and licenses along with NEWS updates are important\nGitHub helps with tagging of release versions\nR-Hub helps with checking before CRAN submission"
-  },
-  {
-    "objectID": "slides/09_conclusion.html#shiny",
-    "href": "slides/09_conclusion.html#shiny",
-    "title": "9 Conclusion",
-    "section": "Shiny",
-    "text": "Shiny\n\nBest practices are not just important for R packages, also for Shiny!\nDesign UI and package structure first, minimize actual Shiny code\nShiny modules help to make the reactivity manageable\nUse normal tests for static code, server tests and shinytest2 for Shiny code"
-  },
-  {
-    "objectID": "slides/09_conclusion.html#optimization",
-    "href": "slides/09_conclusion.html#optimization",
-    "title": "9 Conclusion",
-    "section": "Optimization",
-    "text": "Optimization\n\nOptimization is an advanced task, which should usally only come last\nMake sure to invest your development time where it matters by profiling the code first\nKeep in mind: explore fast alternative packages, don’t repeat or copy, vectorize where possible.\nIf necessary, consider using some C++, but keep in mind maintenance burden"
-  },
-  {
-    "objectID": "slides/09_conclusion.html#thank-you",
-    "href": "slides/09_conclusion.html#thank-you",
-    "title": "9 Conclusion",
-    "section": "Thank you!",
-    "text": "Thank you!\n\n\n\n\n\nIt was great to teach you today (and yesterday) on how to build R packages\nLet’s keep in touch e.g. via the gitter chat channel for this course that you can connect to\nWe welcome feedback on topics/format/content - reach out!"
-  },
-  {
-    "objectID": "slides/09_conclusion.html#possible-next-steps",
-    "href": "slides/09_conclusion.html#possible-next-steps",
-    "title": "9 Conclusion",
-    "section": "Possible next steps",
-    "text": "Possible next steps\n\nBring the information back to your colleagues in your organization\nStart building your first own package and share internally first\nLater publish it open source on GitHub and submit it to CRAN\nLearn about more tips and tricks how to extend R\n\n\nPhoto by Pixabay on pexels.com"
-  },
-  {
-    "objectID": "listing.html",
-    "href": "listing.html",
-    "title": "Slides",
-    "section": "",
-    "text": "1 Introduction\n\n\nopenstatsware Workshop: Good Software Engineering Practice for R Packages\n\n\nIntroduction and outline of program.Photo CC0 by Mabel Amber on pexels.com\n\n\n\n\n\n\nApr 18, 2024\n\n\n\n\n\n\n  \n\n\n\n\n2 R packages\n\n\nopenstatsware Workshop: Good Software Engineering Practice for R Packages\n\n\nR package syntax + practicalPhoto CC0 by cottonbro studio on pexels.com\n\n\n\n\n\n\nApr 18, 2024\n\n\n\n\n\n\n  \n\n\n\n\n3 An R Package Engineering Workflow\n\n\nopenstatsware Workshop: Good Software Engineering Practice for R Packages\n\n\nWorkflow for creating R packages + practicalPhoto CC0 by Andrea Piacquadio on pexels.com\n\n\n\n\n\n\nApr 18, 2024\n\n\n\n\n\n\n  \n\n\n\n\n4 Ensuring Quality\n\n\nopenstatsware Workshop: Good Software Engineering Practice for R Packages\n\n\nPackage quality + exercisePhoto CC0 by Pixabay on pexels.com\n\n\n\n\n\n\nApr 18, 2024\n\n\n\n\n\n\n  \n\n\n\n\n5 Version Control & Collaboration\n\n\nopenstatsware Workshop: Good Software Engineering Practice for R Packages\n\n\nCollaboration via GitHub + practicalPhoto CC0 by THIS IS ZUN on pexels.com\n\n\n\n\n\n\nApr 18, 2024\n\n\n\n\n\n\n  \n\n\n\n\n6 Publication\n\n\nopenstatsware Workshop: Good Software Engineering Practice for R Packages\n\n\nPublication of R packages + practicalPhoto CC0 by Andrea Piacquadio on pexels.com\n\n\n\n\n\n\nApr 18, 2024\n\n\n\n\n\n\n  \n\n\n\n\n7 Shiny Development\n\n\nopenstatsware Workshop: Good Software Engineering Practice for R Packages\n\n\nBest Practices for Shiny App DevelopmentPhoto by Pixabay on pexels.com\n\n\n\n\n\n\nApr 18, 2024\n\n\n\n\n\n\n  \n\n\n\n\n8 Code Optimization\n\n\nopenstatsware Workshop: Good Software Engineering Practice for R Packages\n\n\nBest Practices for Optimizing CodePhoto by Chris Peeters on pexels.com\n\n\n\n\n\n\nApr 18, 2024\n\n\n\n\n\n\n  \n\n\n\n\n9 Conclusion\n\n\nopenstatsware Workshop: Good Software Engineering Practice for R Packages\n\n\nDiscussion of learning experience, summary of workflow, conclusion and next steps.Photo by Ann H on pexels.com\n\n\n\n\n\n\nApr 18, 2024\n\n\n\n\n\n\nNo matching items"
-  },
-  {
-    "objectID": "slides/03_workflow.html#typical-work-steps",
-    "href": "slides/03_workflow.html#typical-work-steps",
-    "title": "3 An R Package Engineering Workflow",
-    "section": "Typical work steps",
-    "text": "Typical work steps\n\n\n\n\nIdea\nConcept creation\nValidation planning\nSpecification:\n\nUser Requirements Spec (URS),\nFunctional Spec (FS), and\nSoftware Design Spec (SDS)\n\n\n\n\nR package programming\nDocumented verification\nCompletion of formal validation\nR package release\nUse in production\nMaintenance"
-  },
-  {
-    "objectID": "slides/03_workflow.html#frequently-used-workflow-in-practice",
-    "href": "slides/03_workflow.html#frequently-used-workflow-in-practice",
-    "title": "3 An R Package Engineering Workflow",
-    "section": "Frequently Used Workflow in Practice",
-    "text": "Frequently Used Workflow in Practice\n\n\n\n\nIdea\nR package programming\nUse in production\nBug fixing\nUse in production\n\n\n\nBug fixing + Documentation\nUse in production\nBug fixing + Further development\nUse in production\nBug fixing + …\n\n\n\n\n\n Bad practice!\n\n\n Why?"
-  },
-  {
-    "objectID": "slides/03_workflow.html#why-practice-good-engineering-1",
-    "href": "slides/03_workflow.html#why-practice-good-engineering-1",
-    "title": "3 An R Package Engineering Workflow",
-    "section": "Why practice good engineering?",
-    "text": "Why practice good engineering?\n\n\nOrigin of errors in system development\n\nBoehm, B. (1981). Software Engineering Economics. Prentice Hall."
-  },
-  {
-    "objectID": "slides/03_workflow.html#why-practice-good-engineering-2",
-    "href": "slides/03_workflow.html#why-practice-good-engineering-2",
-    "title": "3 An R Package Engineering Workflow",
-    "section": "Why practice good engineering?",
-    "text": "Why practice good engineering?\n\n\n\nDon’t waste time on maintenance\nBe faster with release on CRAN\nDon’t waste time with inefficient and buggy further development\n\n\n\nFulfill regulatory requirements1\nSave refactoring time when the Proof-of-Concept (PoC) becomes the release version\nYou don’t have to be shy any longer about inviting other developers to contribute to the package on GitHub\n\n\n\nSee also Ensuring Quality"
-  },
-  {
-    "objectID": "slides/03_workflow.html#why-practice-good-engineering-3",
-    "href": "slides/03_workflow.html#why-practice-good-engineering-3",
-    "title": "3 An R Package Engineering Workflow",
-    "section": "Why practice good engineering?",
-    "text": "Why practice good engineering?\nInvest time in\n\nrequirements analysis,\nsoftware design, and\narchitecture…\n\n\n… but in many cases the workflow must be workable for a single developer or a small team."
-  },
-  {
-    "objectID": "slides/03_workflow.html#example---step-1-idea",
-    "href": "slides/03_workflow.html#example---step-1-idea",
-    "title": "3 An R Package Engineering Workflow",
-    "section": "Example - Step 1: Idea",
-    "text": "Example - Step 1: Idea\nLet’s assume that you used some lines of code to create simulated data in multiple projects:\n\ndat &lt;- data.frame(\n    group = c(rep(1, 50), rep(2, 50)),\n    values = c(\n        rnorm(n = 50, mean = 8, sd = 12),\n        rnorm(n = 50, mean = 14, sd = 11)\n    )\n)\n\nIdea: put the code into a package"
-  },
-  {
-    "objectID": "slides/03_workflow.html#example---step-2-design-docs",
-    "href": "slides/03_workflow.html#example---step-2-design-docs",
-    "title": "3 An R Package Engineering Workflow",
-    "section": "Example - Step 2: Design docs",
-    "text": "Example - Step 2: Design docs\n\nDescribe the purpose and scope of the package\nAnalyse and describe the requirements in clear and simple terms (“prose”)\n\n\n\n\nObligation level\nKey word1\nDescription\n\n\n\n\nDuty\nmust, shall\n“must have”\n\n\nDesire\nshould\n“nice to have”\n\n\nIntention\nmay\n“optional”\n\n\n\nRupp, C., & SOPHISTen, die. (2009). Requirements-Engineering und -Management: Professionelle, iterative Anforderungsanalyse für die Praxis (5. Ed.). Carl Hanser Verlag GmbH & Co. KG. See also: plainlanguage.gov"
-  },
-  {
-    "objectID": "slides/03_workflow.html#example---step-2-design-docs-1",
-    "href": "slides/03_workflow.html#example---step-2-design-docs-1",
-    "title": "3 An R Package Engineering Workflow",
-    "section": "Example - Step 2: Design docs",
-    "text": "Example - Step 2: Design docs\nPurpose and Scope\nThe R package simulatr shall enable the creation of reproducible fake data.\nPackage Requirements\nsimulatr shall provide a function to generate normal distributed random data for two independent groups. The function must allow flexible definition of sample size per group, mean per group, standard deviation per group. The reproducibility of the simulated data must be ensured via an optional seed. It should be possible to print the function result. The package may also facilitate graphical presentation of the simulated data."
-  },
-  {
-    "objectID": "slides/03_workflow.html#example---step-2-design-docs-2",
-    "href": "slides/03_workflow.html#example---step-2-design-docs-2",
-    "title": "3 An R Package Engineering Workflow",
-    "section": "Example - Step 2: Design docs",
-    "text": "Example - Step 2: Design docs\n\n\nUseful formats / tools for design docs:\n\nR Markdown1 (*.Rmd)\nQuarto1 (*.qmd)\nOverleaf2\ndraw.io3\n\n\n\nUML Diagram\n\n\n\n\n\n\n\n\nBased on Markdown, the easy-to-use markup languageThe easy to use, online, collaborative LaTeX editorA picture is worth a thousand words"
-  },
-  {
-    "objectID": "slides/03_workflow.html#example---step-3-packaging",
-    "href": "slides/03_workflow.html#example---step-3-packaging",
-    "title": "3 An R Package Engineering Workflow",
-    "section": "Example - Step 3: Packaging",
-    "text": "Example - Step 3: Packaging\nR package programming\n\nCreate basic package project (see R Packages)\nC&P existing R scripts (one-off scripts, prototype functions) and refactor1 it if necessary\nCreate R generic functions\nDocument all functions\n\nSee also Ensuring Quality"
-  },
-  {
-    "objectID": "slides/03_workflow.html#example---step-3-packaging-1",
-    "href": "slides/03_workflow.html#example---step-3-packaging-1",
-    "title": "3 An R Package Engineering Workflow",
-    "section": "Example - Step 3: Packaging",
-    "text": "Example - Step 3: Packaging\nOne-off script as starting point:\n\nsim.data &lt;- function(n1, n2, m1, m2, s1, s2) {\n    data.frame(\n        group = c(rep(1, n1), rep(2, n2)),\n        values = c(\n            rnorm(n = n1, mean = m1, sd = s1),\n            rnorm(n = n2, mean = m2, sd = s2)\n        )\n    )\n}"
-  },
-  {
-    "objectID": "slides/03_workflow.html#example---step-3-packaging-2",
-    "href": "slides/03_workflow.html#example---step-3-packaging-2",
-    "title": "3 An R Package Engineering Workflow",
-    "section": "Example - Step 3: Packaging",
-    "text": "Example - Step 3: Packaging\nRefactored script:\n\ngetSimulatedTwoArmMeans &lt;- function(n1, n2, mean1, mean2, sd1, sd2) {\n    data.frame(\n        group = c(rep(1, n1), rep(2, n2)),\n        values = c(\n            rnorm(n = n1, mean = mean1, sd = sd1),\n            rnorm(n = n2, mean = mean2, sd = sd2)\n        )\n    )\n}\n\nAlmost all functions, arguments, and objects should be self-explanatory due to their names."
-  },
-  {
-    "objectID": "slides/03_workflow.html#example---step-3-packaging-3",
-    "href": "slides/03_workflow.html#example---step-3-packaging-3",
-    "title": "3 An R Package Engineering Workflow",
-    "section": "Example - Step 3: Packaging",
-    "text": "Example - Step 3: Packaging\nDefine that the result is a list1 which is defined as class2:\n\ngetSimulatedTwoArmMeans &lt;- function(n1, n2, mean1, mean2, sd1, sd2) {\n    result &lt;- list(n1 = n1, n2 = n2, \n         mean1 = mean1, mean2 = mean2, sd1 = sd1, sd2 = sd2)\n    result$data &lt;- data.frame(\n        group = c(rep(1, n1), rep(2, n2)),\n        values = c(\n            rnorm(n = n1, mean = mean1, sd = sd1),\n            rnorm(n = n2, mean = mean2, sd = sd2)\n        )\n    )\n    # set the class attribute\n    result &lt;- structure(result, class = \"SimulationResult\")\n    return(result)\n}\n\nIt’s common practice to add the function arguments to the result \\(\\rightarrow\\) should be a list or classTo implement generics, the result must be a class"
-  },
-  {
-    "objectID": "slides/03_workflow.html#example---step-3-packaging-4",
-    "href": "slides/03_workflow.html#example---step-3-packaging-4",
-    "title": "3 An R Package Engineering Workflow",
-    "section": "Example - Step 3: Packaging",
-    "text": "Example - Step 3: Packaging\nThe output is impractical, e.g., we need to scroll down:\n\nx &lt;- getSimulatedTwoArmMeans(n1 = 50, n2 = 50, mean1 = 5, mean2 = 7, sd1 = 3, sd2 = 4)\nx\n\n$n1\n[1] 50\n\n$n2\n[1] 50\n\n$mean1\n[1] 5\n\n$mean2\n[1] 7\n\n$sd1\n[1] 3\n\n$sd2\n[1] 4\n\n$data\n    group     values\n1       1  2.7536905\n2       1  5.4152287\n3       1  4.6459351\n4       1 10.9063347\n5       1  5.3739298\n6       1  3.7353240\n7       1  4.8829481\n8       1  4.9787031\n9       1  6.5612914\n10      1  4.9382775\n11      1  5.6619422\n12      1  8.3455679\n13      1  2.1843851\n14      1  8.9652026\n15      1  9.7420921\n16      1  4.5221915\n17      1  8.4472459\n18      1  1.8352772\n19      1 13.1825122\n20      1  4.5464433\n21      1  7.0024666\n22      1  3.8213732\n23      1  5.4464151\n24      1  6.3071672\n25      1  1.3961091\n26      1  4.1468170\n27      1  7.8436759\n28      1  4.8409016\n29      1  4.8504056\n30      1  5.2775554\n31      1  5.2956021\n32      1  4.4931609\n33      1  2.4134470\n34      1  1.2714067\n35      1  3.4307474\n36      1  9.6889229\n37      1 10.4555358\n38      1  3.7432588\n39      1  3.4065165\n40      1  7.4834559\n41      1  5.4204430\n42      1  5.4817158\n43      1  6.2858731\n44      1  3.8629109\n45      1  4.6552538\n46      1  2.4499107\n47      1  2.6657501\n48      1  1.0844877\n49      1  7.1243841\n50      1  4.5037026\n51      2  9.7863714\n52      2  5.2992865\n53      2  6.2312033\n54      2 16.6657716\n55      2 10.4875058\n56      2  4.5730183\n57      2 -0.0571631\n58      2  5.1876527\n59      2  5.8342912\n60      2 13.4932571\n61      2 11.3986926\n62      2  5.8426923\n63      2 11.8305670\n64      2  5.5585193\n65      2 10.1250671\n66      2  4.9563861\n67      2 16.0061729\n68      2  8.8650083\n69      2  5.2733406\n70      2  2.6818297\n71      2  1.4708383\n72      2  9.3897313\n73      2  7.7873225\n74      2 11.8640596\n75      2  5.5752452\n76      2  9.7956657\n77      2 12.6704241\n78      2  9.3594530\n79      2  6.4511214\n80      2  7.9579046\n81      2  9.3235112\n82      2 12.3289829\n83      2  3.5399482\n84      2  2.2917261\n85      2  8.6110969\n86      2  0.3087946\n87      2  1.4404012\n88      2  3.8335138\n89      2 13.8431175\n90      2 11.4602484\n91      2 10.8971917\n92      2  9.5478561\n93      2  1.7462230\n94      2  0.1611180\n95      2 11.3979652\n96      2 12.8339041\n97      2  3.9053908\n98      2  6.2205110\n99      2  3.6240941\n100     2  7.0535721\n\nattr(,\"class\")\n[1] \"SimulationResult\"\n\n\n\nSolution: implement generic function print"
-  },
-  {
-    "objectID": "slides/03_workflow.html#example---step-3-packaging-5",
-    "href": "slides/03_workflow.html#example---step-3-packaging-5",
-    "title": "3 An R Package Engineering Workflow",
-    "section": "Example - Step 3: Packaging",
-    "text": "Example - Step 3: Packaging\nGeneric function print:\n\nCodeRoxygenOutput\n\n\n\nprint.SimulationResult &lt;- function(x, ...) {\n    args &lt;- list(n1 = x$n1, n2 = x$n2, \n        mean1 = x$mean1, mean2 = x$mean2, sd1 = x$sd1, sd2 = x$sd2)\n    \n    print(list(\n        args = format(args), \n        data = dplyr::tibble(x$data)\n    ), ...)\n}\nx\n\n\n\n\n#' @title\n#' Print Simulation Result\n#'\n#' @description\n#' Generic function to print a `SimulationResult` object.\n#'\n#' @param x a \\code{SimulationResult} object to print.\n#' @param ... further arguments passed to or from other methods.\n#' \n#' @examples\n#' x &lt;- getSimulatedTwoArmMeans(n1 = 50, n2 = 50, mean1 = 5, \n#'      mean2 = 7, sd1 = 3, sd2 = 4, seed = 123)\n#' print(x)\n#'\n#' @export\n\n\n\n\n\n$args\n   n1    n2 mean1 mean2   sd1   sd2 \n \"50\"  \"50\"   \"5\"   \"7\"   \"3\"   \"4\" \n\n$data\n# A tibble: 100 × 2\n   group values\n   &lt;dbl&gt;  &lt;dbl&gt;\n 1     1   2.75\n 2     1   5.42\n 3     1   4.65\n 4     1  10.9 \n 5     1   5.37\n 6     1   3.74\n 7     1   4.88\n 8     1   4.98\n 9     1   6.56\n10     1   4.94\n# ℹ 90 more rows"
-  },
-  {
-    "objectID": "slides/03_workflow.html#preparation",
-    "href": "slides/03_workflow.html#preparation",
-    "title": "3 An R Package Engineering Workflow",
-    "section": "Preparation",
-    "text": "Preparation\n\nDownload the unfinished R package simulatr\nExtract the package zip file\nOpen the project with RStudio\nComplete the tasks below"
-  },
-  {
-    "objectID": "slides/03_workflow.html#tasks",
-    "href": "slides/03_workflow.html#tasks",
-    "title": "3 An R Package Engineering Workflow",
-    "section": "Tasks",
-    "text": "Tasks\n\nTask 1Task 2Task 3Task 4Task 5Task 6Task 7\n\n\nAdd assertions to improve the usability and user experience\n\n\n\n\n\n\nTip on assertions\n\n\nUse the package checkmate to validate input arguments.\n\n\n\nExample:\n\nplayWithAssertions &lt;- function(n1) {\n  checkmate::assertInt(n1, lower = 1)\n}\nplayWithAssertions(-1)\n\nError in playWithAssertions(-1) : Assertion on ‘n1’ failed: Element 1 is not &gt;= 1.\n\n\nAdd three additional results:\n\nn total,\ncreation time, and\nallocation ratio\n\n\n\n\n\n\n\nTip on creation time\n\n\nSys.time(), format(Sys.time(), '%B %d, %Y'), Sys.Date()\n\n\n\n\n\nAdd an additional result: t.test result\n\n\nAdd an optional alternative argument and pass it through t.test:\n\n\nalternative = c(\"two.sided\", \"less\", \"greater\")\n\n\n\nImplement the generic functions print and plot.\n\n\n\n\n\n\nTip on print\n\n\nUse the plot example function from above and extend it.\n\n\n\n\n\n\n\n\n\nTip on plot\n\n\nUse R base plot or ggplot2 to create a grouped boxplot of the fake data.\n\n\n\n\n\nOptional extra tasks:\n\nImplement the generic functions summary and cat\nImplement the function kable known from the package knitr as generic. Tip: use\n\nkable &lt;- function(x) UseMethod(\"kable\")\n\nto define kable as generic\n\n\n\nOptional extra task1:\nDocument your functions with Roxygen2\n\n\nIf you are already familiar with Roxygen2"
   },
   {
     "objectID": "slides/02_r_packages.html#what-you-know-already",
@@ -931,6 +588,573 @@
     "text": "Let’s try this out now 😊\n\nSet up a new R package with a fancy name\nFill out the DESCRIPTION file\nInclude a new function\nAdd roxygen2 documentation\nExport the function to the namespace\nProduce the package documentation\nRun checks\nBuild the package"
   },
   {
+    "objectID": "slides/03_workflow.html#typical-work-steps",
+    "href": "slides/03_workflow.html#typical-work-steps",
+    "title": "3 An R Package Engineering Workflow",
+    "section": "Typical work steps",
+    "text": "Typical work steps\n\n\n\n\nIdea\nConcept creation\nValidation planning\nSpecification:\n\nUser Requirements Spec (URS),\nFunctional Spec (FS), and\nSoftware Design Spec (SDS)\n\n\n\n\nR package programming\nDocumented verification\nCompletion of formal validation\nR package release\nUse in production\nMaintenance"
+  },
+  {
+    "objectID": "slides/03_workflow.html#frequently-used-workflow-in-practice",
+    "href": "slides/03_workflow.html#frequently-used-workflow-in-practice",
+    "title": "3 An R Package Engineering Workflow",
+    "section": "Frequently Used Workflow in Practice",
+    "text": "Frequently Used Workflow in Practice\n\n\n\n\nIdea\nR package programming\nUse in production\nBug fixing\nUse in production\n\n\n\nBug fixing + Documentation\nUse in production\nBug fixing + Further development\nUse in production\nBug fixing + …\n\n\n\n\n\n Bad practice!\n\n\n Why?"
+  },
+  {
+    "objectID": "slides/03_workflow.html#why-practice-good-engineering-1",
+    "href": "slides/03_workflow.html#why-practice-good-engineering-1",
+    "title": "3 An R Package Engineering Workflow",
+    "section": "Why practice good engineering?",
+    "text": "Why practice good engineering?\n\n\nOrigin of errors in system development\n\nBoehm, B. (1981). Software Engineering Economics. Prentice Hall."
+  },
+  {
+    "objectID": "slides/03_workflow.html#why-practice-good-engineering-2",
+    "href": "slides/03_workflow.html#why-practice-good-engineering-2",
+    "title": "3 An R Package Engineering Workflow",
+    "section": "Why practice good engineering?",
+    "text": "Why practice good engineering?\n\n\n\nDon’t waste time on maintenance\nBe faster with release on CRAN\nDon’t waste time with inefficient and buggy further development\n\n\n\nFulfill regulatory requirements1\nSave refactoring time when the Proof-of-Concept (PoC) becomes the release version\nYou don’t have to be shy any longer about inviting other developers to contribute to the package on GitHub\n\n\n\nSee also Ensuring Quality"
+  },
+  {
+    "objectID": "slides/03_workflow.html#why-practice-good-engineering-3",
+    "href": "slides/03_workflow.html#why-practice-good-engineering-3",
+    "title": "3 An R Package Engineering Workflow",
+    "section": "Why practice good engineering?",
+    "text": "Why practice good engineering?\nInvest time in\n\nrequirements analysis,\nsoftware design, and\narchitecture…\n\n\n… but in many cases the workflow must be workable for a single developer or a small team."
+  },
+  {
+    "objectID": "slides/03_workflow.html#example---step-1-idea",
+    "href": "slides/03_workflow.html#example---step-1-idea",
+    "title": "3 An R Package Engineering Workflow",
+    "section": "Example - Step 1: Idea",
+    "text": "Example - Step 1: Idea\nLet’s assume that you used some lines of code to create simulated data in multiple projects:\n\ndat &lt;- data.frame(\n    group = c(rep(1, 50), rep(2, 50)),\n    values = c(\n        rnorm(n = 50, mean = 8, sd = 12),\n        rnorm(n = 50, mean = 14, sd = 11)\n    )\n)\n\nIdea: put the code into a package"
+  },
+  {
+    "objectID": "slides/03_workflow.html#example---step-2-design-docs",
+    "href": "slides/03_workflow.html#example---step-2-design-docs",
+    "title": "3 An R Package Engineering Workflow",
+    "section": "Example - Step 2: Design docs",
+    "text": "Example - Step 2: Design docs\n\nDescribe the purpose and scope of the package\nAnalyse and describe the requirements in clear and simple terms (“prose”)\n\n\n\n\nObligation level\nKey word1\nDescription\n\n\n\n\nDuty\nmust, shall\n“must have”\n\n\nDesire\nshould\n“nice to have”\n\n\nIntention\nmay\n“optional”\n\n\n\nRupp, C., & SOPHISTen, die. (2009). Requirements-Engineering und -Management: Professionelle, iterative Anforderungsanalyse für die Praxis (5. Ed.). Carl Hanser Verlag GmbH & Co. KG. See also: plainlanguage.gov"
+  },
+  {
+    "objectID": "slides/03_workflow.html#example---step-2-design-docs-1",
+    "href": "slides/03_workflow.html#example---step-2-design-docs-1",
+    "title": "3 An R Package Engineering Workflow",
+    "section": "Example - Step 2: Design docs",
+    "text": "Example - Step 2: Design docs\nPurpose and Scope\nThe R package simulatr shall enable the creation of reproducible fake data.\nPackage Requirements\nsimulatr shall provide a function to generate normal distributed random data for two independent groups. The function must allow flexible definition of sample size per group, mean per group, standard deviation per group. The reproducibility of the simulated data must be ensured via an optional seed. It should be possible to print the function result. The package may also facilitate graphical presentation of the simulated data."
+  },
+  {
+    "objectID": "slides/03_workflow.html#example---step-2-design-docs-2",
+    "href": "slides/03_workflow.html#example---step-2-design-docs-2",
+    "title": "3 An R Package Engineering Workflow",
+    "section": "Example - Step 2: Design docs",
+    "text": "Example - Step 2: Design docs\n\n\nUseful formats / tools for design docs:\n\nR Markdown1 (*.Rmd)\nQuarto1 (*.qmd)\nOverleaf2\ndraw.io3\n\n\n\nUML Diagram\n\n\n\n\n\n\n\n\nBased on Markdown, the easy-to-use markup languageThe easy to use, online, collaborative LaTeX editorA picture is worth a thousand words"
+  },
+  {
+    "objectID": "slides/03_workflow.html#example---step-3-packaging",
+    "href": "slides/03_workflow.html#example---step-3-packaging",
+    "title": "3 An R Package Engineering Workflow",
+    "section": "Example - Step 3: Packaging",
+    "text": "Example - Step 3: Packaging\nR package programming\n\nCreate basic package project (see R Packages)\nC&P existing R scripts (one-off scripts, prototype functions) and refactor1 it if necessary\nCreate R generic functions\nDocument all functions\n\nSee also Ensuring Quality"
+  },
+  {
+    "objectID": "slides/03_workflow.html#example---step-3-packaging-1",
+    "href": "slides/03_workflow.html#example---step-3-packaging-1",
+    "title": "3 An R Package Engineering Workflow",
+    "section": "Example - Step 3: Packaging",
+    "text": "Example - Step 3: Packaging\nOne-off script as starting point:\n\nsim.data &lt;- function(n1, n2, m1, m2, s1, s2) {\n    data.frame(\n        group = c(rep(1, n1), rep(2, n2)),\n        values = c(\n            rnorm(n = n1, mean = m1, sd = s1),\n            rnorm(n = n2, mean = m2, sd = s2)\n        )\n    )\n}"
+  },
+  {
+    "objectID": "slides/03_workflow.html#example---step-3-packaging-2",
+    "href": "slides/03_workflow.html#example---step-3-packaging-2",
+    "title": "3 An R Package Engineering Workflow",
+    "section": "Example - Step 3: Packaging",
+    "text": "Example - Step 3: Packaging\nRefactored script:\n\ngetSimulatedTwoArmMeans &lt;- function(n1, n2, mean1, mean2, sd1, sd2) {\n    data.frame(\n        group = c(rep(1, n1), rep(2, n2)),\n        values = c(\n            rnorm(n = n1, mean = mean1, sd = sd1),\n            rnorm(n = n2, mean = mean2, sd = sd2)\n        )\n    )\n}\n\nAlmost all functions, arguments, and objects should be self-explanatory due to their names."
+  },
+  {
+    "objectID": "slides/03_workflow.html#example---step-3-packaging-3",
+    "href": "slides/03_workflow.html#example---step-3-packaging-3",
+    "title": "3 An R Package Engineering Workflow",
+    "section": "Example - Step 3: Packaging",
+    "text": "Example - Step 3: Packaging\nDefine that the result is a list1 which is defined as class2:\n\ngetSimulatedTwoArmMeans &lt;- function(n1, n2, mean1, mean2, sd1, sd2) {\n    result &lt;- list(n1 = n1, n2 = n2, \n         mean1 = mean1, mean2 = mean2, sd1 = sd1, sd2 = sd2)\n    result$data &lt;- data.frame(\n        group = c(rep(1, n1), rep(2, n2)),\n        values = c(\n            rnorm(n = n1, mean = mean1, sd = sd1),\n            rnorm(n = n2, mean = mean2, sd = sd2)\n        )\n    )\n    # set the class attribute\n    result &lt;- structure(result, class = \"SimulationResult\")\n    return(result)\n}\n\nIt’s common practice to add the function arguments to the result \\(\\rightarrow\\) should be a list or classTo implement generics, the result must be a class"
+  },
+  {
+    "objectID": "slides/03_workflow.html#example---step-3-packaging-4",
+    "href": "slides/03_workflow.html#example---step-3-packaging-4",
+    "title": "3 An R Package Engineering Workflow",
+    "section": "Example - Step 3: Packaging",
+    "text": "Example - Step 3: Packaging\nThe output is impractical, e.g., we need to scroll down:\n\nx &lt;- getSimulatedTwoArmMeans(n1 = 50, n2 = 50, mean1 = 5, mean2 = 7, sd1 = 3, sd2 = 4)\nx\n\n$n1\n[1] 50\n\n$n2\n[1] 50\n\n$mean1\n[1] 5\n\n$mean2\n[1] 7\n\n$sd1\n[1] 3\n\n$sd2\n[1] 4\n\n$data\n    group     values\n1       1  3.6484211\n2       1  8.4285226\n3       1 11.6666560\n4       1  7.8549722\n5       1  3.6226954\n6       1 -1.1549129\n7       1  5.9529121\n8       1  2.7543938\n9       1  6.7236581\n10      1  9.8365975\n11      1  6.2403168\n12      1  0.8663588\n13      1  8.2049115\n14      1  2.1379618\n15      1  7.1114187\n16      1  7.2903162\n17      1  2.5205601\n18      1  2.4046510\n19      1  2.3808606\n20      1  9.9461629\n21      1  5.5147745\n22      1  2.4950332\n23      1  8.9814865\n24      1  3.8012466\n25      1  0.5509062\n26      1  8.3891105\n27      1  4.6412797\n28      1  2.7100864\n29      1  5.5758439\n30      1  3.2689639\n31      1  5.0373210\n32      1  5.0112132\n33      1  8.9343854\n34      1  3.9222762\n35      1  6.0655759\n36      1  4.7423423\n37      1  4.2156797\n38      1  6.2157571\n39      1  5.5083649\n40      1  4.4927897\n41      1  2.0055062\n42      1  3.9046555\n43      1  2.5076605\n44      1  4.7424221\n45      1  7.9603611\n46      1  3.6235850\n47      1  4.6927253\n48      1  5.5671355\n49      1  6.8478557\n50      1  8.0887503\n51      2 17.5529991\n52      2 14.7231955\n53      2  7.1818798\n54      2  2.7354354\n55      2  4.1008595\n56      2  6.5047191\n57      2  8.9914397\n58      2  7.5307443\n59      2 15.3392986\n60      2  6.6593938\n61      2  4.8357678\n62      2  8.7698497\n63      2 -0.4506995\n64      2 13.6945639\n65      2 14.8268123\n66      2  9.6337609\n67      2 -0.4726708\n68      2  1.1867573\n69      2  7.7096317\n70      2  0.5026830\n71      2 11.8273734\n72      2 13.5906708\n73      2 11.3301623\n74      2  6.8133545\n75      2  5.1170268\n76      2  7.8627362\n77      2 12.1216599\n78      2 11.4915366\n79      2  4.3628373\n80      2  8.9389759\n81      2  7.1422905\n82      2  7.8512259\n83      2  5.9841167\n84      2 -0.1517528\n85      2 10.0889628\n86      2  6.0215982\n87      2  3.2047685\n88      2  9.8477171\n89      2  8.7531279\n90      2  8.1430746\n91      2  9.7246240\n92      2  5.5772089\n93      2  7.6729345\n94      2 10.1172110\n95      2  9.8369306\n96      2  6.2482350\n97      2  8.9768179\n98      2 11.9810348\n99      2  5.5546871\n100     2 10.5516584\n\nattr(,\"class\")\n[1] \"SimulationResult\"\n\n\n\nSolution: implement generic function print"
+  },
+  {
+    "objectID": "slides/03_workflow.html#example---step-3-packaging-5",
+    "href": "slides/03_workflow.html#example---step-3-packaging-5",
+    "title": "3 An R Package Engineering Workflow",
+    "section": "Example - Step 3: Packaging",
+    "text": "Example - Step 3: Packaging\nGeneric function print:\n\nCodeRoxygenOutput\n\n\n\nprint.SimulationResult &lt;- function(x, ...) {\n    args &lt;- list(n1 = x$n1, n2 = x$n2, \n        mean1 = x$mean1, mean2 = x$mean2, sd1 = x$sd1, sd2 = x$sd2)\n    \n    print(list(\n        args = format(args), \n        data = dplyr::tibble(x$data)\n    ), ...)\n}\nx\n\n\n\n\n#' @title\n#' Print Simulation Result\n#'\n#' @description\n#' Generic function to print a `SimulationResult` object.\n#'\n#' @param x a \\code{SimulationResult} object to print.\n#' @param ... further arguments passed to or from other methods.\n#' \n#' @examples\n#' x &lt;- getSimulatedTwoArmMeans(n1 = 50, n2 = 50, mean1 = 5, \n#'      mean2 = 7, sd1 = 3, sd2 = 4, seed = 123)\n#' print(x)\n#'\n#' @export\n\n\n\n\n\n$args\n   n1    n2 mean1 mean2   sd1   sd2 \n \"50\"  \"50\"   \"5\"   \"7\"   \"3\"   \"4\" \n\n$data\n# A tibble: 100 × 2\n   group values\n   &lt;dbl&gt;  &lt;dbl&gt;\n 1     1   3.65\n 2     1   8.43\n 3     1  11.7 \n 4     1   7.85\n 5     1   3.62\n 6     1  -1.15\n 7     1   5.95\n 8     1   2.75\n 9     1   6.72\n10     1   9.84\n# ℹ 90 more rows"
+  },
+  {
+    "objectID": "slides/03_workflow.html#preparation",
+    "href": "slides/03_workflow.html#preparation",
+    "title": "3 An R Package Engineering Workflow",
+    "section": "Preparation",
+    "text": "Preparation\n\nDownload the unfinished R package simulatr\nExtract the package zip file\nOpen the project with RStudio\nComplete the tasks below"
+  },
+  {
+    "objectID": "slides/03_workflow.html#tasks",
+    "href": "slides/03_workflow.html#tasks",
+    "title": "3 An R Package Engineering Workflow",
+    "section": "Tasks",
+    "text": "Tasks\n\nTask 1Task 2Task 3Task 4Task 5Task 6Task 7\n\n\nAdd assertions to improve the usability and user experience\n\n\n\n\n\n\nTip on assertions\n\n\nUse the package checkmate to validate input arguments.\n\n\n\nExample:\n\nplayWithAssertions &lt;- function(n1) {\n  checkmate::assertInt(n1, lower = 1)\n}\nplayWithAssertions(-1)\n\nError in playWithAssertions(-1) : Assertion on ‘n1’ failed: Element 1 is not &gt;= 1.\n\n\nAdd three additional results:\n\nn total,\ncreation time, and\nallocation ratio\n\n\n\n\n\n\n\nTip on creation time\n\n\nSys.time(), format(Sys.time(), '%B %d, %Y'), Sys.Date()\n\n\n\n\n\nAdd an additional result: t.test result\n\n\nAdd an optional alternative argument and pass it through t.test:\n\n\nalternative = c(\"two.sided\", \"less\", \"greater\")\n\n\n\nImplement the generic functions print and plot.\n\n\n\n\n\n\nTip on print\n\n\nUse the plot example function from above and extend it.\n\n\n\n\n\n\n\n\n\nTip on plot\n\n\nUse R base plot or ggplot2 to create a grouped boxplot of the fake data.\n\n\n\n\n\nOptional extra tasks:\n\nImplement the generic functions summary and cat\nImplement the function kable known from the package knitr as generic. Tip: use\n\nkable &lt;- function(x) UseMethod(\"kable\")\n\nto define kable as generic\n\n\n\nOptional extra task1:\nDocument your functions with Roxygen2\n\n\nIf you are already familiar with Roxygen2"
+  },
+  {
+    "objectID": "listing.html",
+    "href": "listing.html",
+    "title": "Slides",
+    "section": "",
+    "text": "1 Introduction\n\n\nopenstatsware Workshop: Good Software Engineering Practice for R Packages\n\n\nIntroduction and outline of program.Photo CC0 by Mabel Amber on pexels.com\n\n\n\n\n\n\nApr 18, 2024\n\n\n\n\n\n\n  \n\n\n\n\n10 Reproducibility\n\n\nopenstatsware Workshop: Good Software Engineering Practice for R Packages\n\n\nEnsuring ReproducibilityImage by Dana Crane on https://www.activestate.com/blog/trust-security-and-the-reproducibility-crisis-in-software/\n\n\n\n\n\n\nApr 18, 2024\n\n\n\n\n\n\n  \n\n\n\n\n2 R packages\n\n\nopenstatsware Workshop: Good Software Engineering Practice for R Packages\n\n\nR package syntax + practicalPhoto CC0 by cottonbro studio on pexels.com\n\n\n\n\n\n\nApr 18, 2024\n\n\n\n\n\n\n  \n\n\n\n\n3 An R Package Engineering Workflow\n\n\nopenstatsware Workshop: Good Software Engineering Practice for R Packages\n\n\nWorkflow for creating R packages + practicalPhoto CC0 by Andrea Piacquadio on pexels.com\n\n\n\n\n\n\nApr 18, 2024\n\n\n\n\n\n\n  \n\n\n\n\n4 Ensuring Quality\n\n\nopenstatsware Workshop: Good Software Engineering Practice for R Packages\n\n\nPackage quality + exercisePhoto CC0 by Pixabay on pexels.com\n\n\n\n\n\n\nApr 18, 2024\n\n\n\n\n\n\n  \n\n\n\n\n5 Version Control & Collaboration\n\n\nopenstatsware Workshop: Good Software Engineering Practice for R Packages\n\n\nCollaboration via GitHub + practicalPhoto CC0 by THIS IS ZUN on pexels.com\n\n\n\n\n\n\nApr 18, 2024\n\n\n\n\n\n\n  \n\n\n\n\n6 Publication\n\n\nopenstatsware Workshop: Good Software Engineering Practice for R Packages\n\n\nPublication of R packages + practicalPhoto CC0 by Andrea Piacquadio on pexels.com\n\n\n\n\n\n\nApr 18, 2024\n\n\n\n\n\n\n  \n\n\n\n\n7 Shiny Development\n\n\nopenstatsware Workshop: Good Software Engineering Practice for R Packages\n\n\nBest Practices for Shiny App DevelopmentPhoto by Pixabay on pexels.com\n\n\n\n\n\n\nApr 18, 2024\n\n\n\n\n\n\n  \n\n\n\n\n8 Code Optimization\n\n\nopenstatsware Workshop: Good Software Engineering Practice for R Packages\n\n\nBest Practices for Optimizing CodePhoto by Chris Peeters on pexels.com\n\n\n\n\n\n\nApr 18, 2024\n\n\n\n\n\n\n  \n\n\n\n\n9 Conclusion\n\n\nopenstatsware Workshop: Good Software Engineering Practice for R Packages\n\n\nDiscussion of learning experience, summary of workflow, conclusion and next steps.Photo by Ann H on pexels.com\n\n\n\n\n\n\nApr 18, 2024\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "slides/09_conclusion.html#thank-you-zurich-r-courses-team",
+    "href": "slides/09_conclusion.html#thank-you-zurich-r-courses-team",
+    "title": "9 Conclusion",
+    "section": "Thank you Zurich R Courses team!",
+    "text": "Thank you Zurich R Courses team!\n\nLena Götz for the course organization\nLukas Graz for the course assistance\nCarolin Strobl for the initial setup"
+  },
+  {
+    "objectID": "slides/09_conclusion.html#enter-slido.com-2189872",
+    "href": "slides/09_conclusion.html#enter-slido.com-2189872",
+    "title": "9 Conclusion",
+    "section": "Enter slido.com: 2189872",
+    "text": "Enter slido.com: 2189872"
+  },
+  {
+    "objectID": "slides/09_conclusion.html#r-package-structure",
+    "href": "slides/09_conclusion.html#r-package-structure",
+    "title": "9 Conclusion",
+    "section": "R package structure",
+    "text": "R package structure\n\nR package = folder structure with (many) conventions\nWith modern tools usethis, roxygen2 it is easy to start a new package\nPackaging a set of functions is an ideal way to share with collaborators and the public\nStart small and simple and over time you can learn additional options"
+  },
+  {
+    "objectID": "slides/09_conclusion.html#engineering-workflow",
+    "href": "slides/09_conclusion.html#engineering-workflow",
+    "title": "9 Conclusion",
+    "section": "Engineering Workflow",
+    "text": "Engineering Workflow\n\nUse a workable workflow:\nIdea \\(\\rightarrow\\) Design docs \\(\\rightarrow\\) Programming \\(\\rightarrow\\) Quality check \\(\\rightarrow\\) Publication\n\nDon’t waste time on maintenance\nBe faster with release on CRAN\nFulfill quality requirements of yourself and stakeholders\n\nRefactor your one-off scripts that you want to use in a package\nUse assertions for all arguments \\(\\rightarrow\\) better user experience\nImplement common generics like print and plot"
+  },
+  {
+    "objectID": "slides/09_conclusion.html#ensuring-quality",
+    "href": "slides/09_conclusion.html#ensuring-quality",
+    "title": "9 Conclusion",
+    "section": "Ensuring Quality",
+    "text": "Ensuring Quality\n\nApply common clean code rules, e.g.,\n\nUse testthat to test, test, and test\nUse covr to improve the test coverage\nUse styler to optimize the code styling\nDon’t repeat yourself!\n\nYour rewards are:\n\nMaintainability,\nExtensibility, and\nPerformance!"
+  },
+  {
+    "objectID": "slides/09_conclusion.html#collaboration",
+    "href": "slides/09_conclusion.html#collaboration",
+    "title": "9 Conclusion",
+    "section": "Collaboration",
+    "text": "Collaboration\n\nVersion control is key\n\nMultiple people working on code without strong VC \\(\\leadsto\\) disaster!\nThere are different options, but git is the defacto standard for R packages\nGit needs a friend - use platforms like GitHub or GitLab\n\nAutomated CI/CD allows for much quicker iteration\n\nAutomate tests to avoid bugs slipping back in\n\nTechnology does not solve everything - foster a positive culture\n\nKeep internal and external contributors engaged\nInvest in documentation to make it easier to contribute"
+  },
+  {
+    "objectID": "slides/09_conclusion.html#publication",
+    "href": "slides/09_conclusion.html#publication",
+    "title": "9 Conclusion",
+    "section": "Publication",
+    "text": "Publication\n\npkgdown can help you easily create a nice website for your package\nVersions and licenses along with NEWS updates are important\nGitHub helps with tagging of release versions\nR-Hub helps with checking before CRAN submission"
+  },
+  {
+    "objectID": "slides/09_conclusion.html#shiny",
+    "href": "slides/09_conclusion.html#shiny",
+    "title": "9 Conclusion",
+    "section": "Shiny",
+    "text": "Shiny\n\nBest practices are not just important for R packages, also for Shiny!\nDesign UI and package structure first, minimize actual Shiny code\nShiny modules help to make the reactivity manageable\nUse normal tests for static code, server tests and shinytest2 for Shiny code"
+  },
+  {
+    "objectID": "slides/09_conclusion.html#optimization",
+    "href": "slides/09_conclusion.html#optimization",
+    "title": "9 Conclusion",
+    "section": "Optimization",
+    "text": "Optimization\n\nOptimization is an advanced task, which should usally only come last\nMake sure to invest your development time where it matters by profiling the code first\nKeep in mind: explore fast alternative packages, don’t repeat or copy, vectorize where possible.\nIf necessary, consider using some C++, but keep in mind maintenance burden"
+  },
+  {
+    "objectID": "slides/09_conclusion.html#thank-you",
+    "href": "slides/09_conclusion.html#thank-you",
+    "title": "9 Conclusion",
+    "section": "Thank you!",
+    "text": "Thank you!\n\n\n\n\n\nIt was great to teach you today (and yesterday) on how to build R packages\nLet’s keep in touch e.g. via the gitter chat channel for this course that you can connect to\nWe welcome feedback on topics/format/content - reach out!"
+  },
+  {
+    "objectID": "slides/09_conclusion.html#possible-next-steps",
+    "href": "slides/09_conclusion.html#possible-next-steps",
+    "title": "9 Conclusion",
+    "section": "Possible next steps",
+    "text": "Possible next steps\n\nBring the information back to your colleagues in your organization\nStart building your first own package and share internally first\nLater publish it open source on GitHub and submit it to CRAN\nLearn about more tips and tricks how to extend R\n\n\nPhoto by Pixabay on pexels.com"
+  },
+  {
+    "objectID": "slides/05_collaboration.html#disclaimer",
+    "href": "slides/05_collaboration.html#disclaimer",
+    "title": "5 Version Control & Collaboration",
+    "section": "Disclaimer",
+    "text": "Disclaimer\n\nAny opinions expressed in this presentation and on the following slides are solely those of the presenter and not necessarily those of their respective employer or company."
+  },
+  {
+    "objectID": "slides/05_collaboration.html#section",
+    "href": "slides/05_collaboration.html#section",
+    "title": "5 Version Control & Collaboration",
+    "section": "",
+    "text": "Overview, demo, practical\nCan only scratch surface\nMore resources on website\n\n\n\nPhoto by Rich @ rhubbardstockfootage on Unsplash"
+  },
+  {
+    "objectID": "slides/05_collaboration.html#trade-offs-in-code-development",
+    "href": "slides/05_collaboration.html#trade-offs-in-code-development",
+    "title": "5 Version Control & Collaboration",
+    "section": "Trade-offs in code development",
+    "text": "Trade-offs in code development\n\n\n\nWorking alone\n\nno coordination overhead\nno review\nlack of diversity\ncan slack on documentation\nfragile long-term maintenance\n\n\nWorking in a team\n\ncoordination overhead\nmutual review of code\ndifferent approaches\nforced to document\nmore robust long-term maintenance"
+  },
+  {
+    "objectID": "slides/05_collaboration.html#section-1",
+    "href": "slides/05_collaboration.html#section-1",
+    "title": "5 Version Control & Collaboration",
+    "section": "",
+    "text": "Key issue: Manage complexity over time or between people\n\n\nPhoto from Tim Mossholder on Unsplash"
+  },
+  {
+    "objectID": "slides/05_collaboration.html#version-control-systems-vcs",
+    "href": "slides/05_collaboration.html#version-control-systems-vcs",
+    "title": "5 Version Control & Collaboration",
+    "section": "Version control systems (VCS)",
+    "text": "Version control systems (VCS)\n\nManage different versions of a piece of work\nCompare and merge diverged versions effectively1\n\n\n\n\n\nflowchart LR\n  A[Daniel v1] --&gt; B[Daniel v2]\n  B --&gt; C[Daniel v3]\n  B --&gt; D[Lukas v1]\n  D --&gt; E[Lukas + Daniel v4]\n  C --&gt; E\n\n\n\n\n\n\nCode is complex system \\(\\leadsto\\) ideal application of VCS\nCompounded by multiple people ‘fiddling’ with it!\n\nMerging parallel edits is not simple (try it in MS Word 365)"
+  },
+  {
+    "objectID": "slides/05_collaboration.html#enter-git-the-latin-of-data-science",
+    "href": "slides/05_collaboration.html#enter-git-the-latin-of-data-science",
+    "title": "5 Version Control & Collaboration",
+    "section": "Enter git  the ‘Latin of data science’",
+    "text": "Enter git  the ‘Latin of data science’\n\n\n\n\n\nAuthor Linus Torvalds, for work on Linux kernel\nEssentially a database with snapshots of a monitored ‘repository’ (directory)\nOptimized to compute line-based changes\nIntegrated in RStudio IDE, Visual Studio Code\nDe facto standard not just in the R world\nAlternatives: mercurial, SVN, …\n\n\n\n\nPhoto by Lf Asia & the Archive Team CC BY 3.0"
+  },
+  {
+    "objectID": "slides/05_collaboration.html#stage-commit",
+    "href": "slides/05_collaboration.html#stage-commit",
+    "title": "5 Version Control & Collaboration",
+    "section": "Stage & commit",
+    "text": "Stage & commit\n\n\n\n\n\n\n\n\ngitGraph\n   commit\n   commit\n   commit\n   commit\n   commit\n\n\n\n\n\n\n‘Stage’ changes for inspection\n\nallows to inspect propose changes before locking them in\n\nPermanently ‘commit’ changes to git\n\n\\(\\leadsto\\) Chain of versions with incremental changes\n\n\n\nPhoto by Felicia Montenegro on Unsplash"
+  },
+  {
+    "objectID": "slides/05_collaboration.html#line-based-differences---the-diff",
+    "href": "slides/05_collaboration.html#line-based-differences---the-diff",
+    "title": "5 Version Control & Collaboration",
+    "section": "Line-based differences - the ‘diff’",
+    "text": "Line-based differences - the ‘diff’\n\n\nChanges in git are line-based\nAdditions (green) & deletions (red) between commits"
+  },
+  {
+    "objectID": "slides/05_collaboration.html#going-back-in-time",
+    "href": "slides/05_collaboration.html#going-back-in-time",
+    "title": "5 Version Control & Collaboration",
+    "section": "Going back in time",
+    "text": "Going back in time\n\n\n\n\n\nEvery commit has unique hash value\nCan ‘checkout’ old commit (browse history)\n\ngit checkout [commit hash to browse]\n\nCan ‘reset’ changes\n\ngit reset --hard [commit hash to reset to]\n\nRemoves need for my-file_final_v2_2019.R\nTime travelling has its dangers…1\n\n\n\n\nPhoto by Mila Tovar on Unsplash\n\nNever change published history!"
+  },
+  {
+    "objectID": "slides/05_collaboration.html#branching",
+    "href": "slides/05_collaboration.html#branching",
+    "title": "5 Version Control & Collaboration",
+    "section": "Branching",
+    "text": "Branching\n\n\n\n\n\n\n\n\ngitGraph\n   commit\n   commit\n   branch feature\n   checkout feature\n   commit\n   commit\n   checkout main\n   commit\n\n\n\n\n\n\nVariations of repository: ‘branches’\n\ngit checkout -b [my new branch]\n\nQuick switching between branches\n\ngit checkout [branch name]\n\n\n\nPhoto by Mila Tovar on Unsplash"
+  },
+  {
+    "objectID": "slides/05_collaboration.html#merging-two-branches",
+    "href": "slides/05_collaboration.html#merging-two-branches",
+    "title": "5 Version Control & Collaboration",
+    "section": "‘Merging’ two branches",
+    "text": "‘Merging’ two branches\n\n\n\n\n\n\n\n\ngitGraph\n   commit\n   commit\n   branch feature\n   checkout feature\n   commit\n   commit\n   checkout main\n   commit\n   merge feature\n\n\n\n\n\n\nConsolidate diverged ‘branches’\nUsually merged automergically\nConflicting changes \nLine edited in source/target branch - keep which?\nResolving merge conflicts beyond today’s scope\n\n\n\n\nPhoto by Max LaRochelle on Unsplash"
+  },
+  {
+    "objectID": "slides/05_collaboration.html#example-of-gitflow",
+    "href": "slides/05_collaboration.html#example-of-gitflow",
+    "title": "5 Version Control & Collaboration",
+    "section": "Example of ‘gitflow’",
+    "text": "Example of ‘gitflow’\n\n\n\n\ngitGraph\n   commit tag: \"v0.0.1\"\n   commit\n   branch feature-1\n   checkout feature-1\n   commit\n   commit\n   checkout main\n   branch feature-2\n   checkout feature-2\n   commit\n   checkout feature-1\n   commit\n   checkout main\n   commit tag: \"bugfix\"\n   merge feature-1 tag: \"v0.1.0\"\n   checkout feature-2\n   commit\n\n\n\n\n\n\n‘gitflow’: specific workflow for git repositories\nfeatures developed on branches, then merged into ‘main’"
+  },
+  {
+    "objectID": "slides/05_collaboration.html#version-control-collaboration",
+    "href": "slides/05_collaboration.html#version-control-collaboration",
+    "title": "5 Version Control & Collaboration",
+    "section": "Version Control & Collaboration",
+    "text": "Version Control & Collaboration\n\ngit itself is command line tool for version control\ngit platforms add UI for collaboration1\n\nGitHub.com de facto standard in R (one alternative is e.g. GitLab.com)\n\ngit + GitHub\n\nVCS (git)\nWeb hosting of code (GitHub)\nOrganisation with issues, discussions (GitHub)\nAutomation of checks/test (GitHub)\n\n\nAll platforms also available on-premise for enterprise use"
+  },
+  {
+    "objectID": "slides/05_collaboration.html#github.com",
+    "href": "slides/05_collaboration.html#github.com",
+    "title": "5 Version Control & Collaboration",
+    "section": "GitHub.com ",
+    "text": "GitHub.com \n\nHuge number of R packages developed there:\n\nggplot2\ndplyr\npharmaverse\n\n100 million developers on GitHub.com (Jan ’23), see GitHub blog\n372 million repositories, 28 million public (Jan ’23)\n‘Facebook’ of developers / social coding\nDiscuss problems / propose changes"
+  },
+  {
+    "objectID": "slides/05_collaboration.html#branches-pull-requests",
+    "href": "slides/05_collaboration.html#branches-pull-requests",
+    "title": "5 Version Control & Collaboration",
+    "section": "Branches & pull requests",
+    "text": "Branches & pull requests\n\nBranches are a git concept\nGit platforms add concept of ‘pull request’ (PR)\n\nPR is ‘suggested merge’ from branch A to B\nUsually from ‘feature A’ to ‘main’\n\nAllow to preview problems before merge and discuss changes\nOnce everyone is happy, a pull request1 can be merged\nEvery PR has an associated branch, but not every branch has a PR\nMore in the demo!\n\ntechnically its associated branch"
+  },
+  {
+    "objectID": "slides/05_collaboration.html#automating-things-with-github",
+    "href": "slides/05_collaboration.html#automating-things-with-github",
+    "title": "5 Version Control & Collaboration",
+    "section": "Automating things with GitHub",
+    "text": "Automating things with GitHub\n\nGitHub provides\n\ncloud compute\nscripting framework (GitHub actions)\n\nAllows task automation, e.g.\n\nrun unit tests\nbuild & host documentation\nstatic code analysis (linting)\n\nMost important actions for R: github.com/r-lib/actions\nExtremely useful to enforce best-practices & quality"
+  },
+  {
+    "objectID": "slides/05_collaboration.html#a-typical-github-workflow",
+    "href": "slides/05_collaboration.html#a-typical-github-workflow",
+    "title": "5 Version Control & Collaboration",
+    "section": "A typical GitHub workflow",
+    "text": "A typical GitHub workflow\n\n\n\n\nsequenceDiagram\n    participant A as Daniel\n    participant GH as GitHub server\n    participant B as Lukas\n    A-&gt;&gt;A: make change locally & commit to &lt;feature&gt;\n    A-&gt;&gt;GH: push commit\n    A-&gt;&gt;GH: open pull request\n    GH-&gt;&gt;GH: run automated checks\n    A-&gt;&gt;B: request review\n    B-&gt;&gt;B: review code\n    B-&gt;&gt;A: request changes\n    A-&gt;&gt;A: implement changes locally & commit\n    A-&gt;&gt;GH: push commit\n    GH-&gt;&gt;GH: run automated checks\n    A-&gt;&gt;B: request review\n    B-&gt;&gt;B: review code\n    B-&gt;&gt;GH: approve changes, unblocking merge\n    A-&gt;&gt;GH: merge &lt;feature&gt; into &lt;main&gt;\n    GH-&gt;&gt;GH: run automated checks on &lt;main&gt;\n    B-&gt;&gt;GH: pull newest version of &lt;main&gt;"
+  },
+  {
+    "objectID": "slides/05_collaboration.html#looks-awfully-complicated-why",
+    "href": "slides/05_collaboration.html#looks-awfully-complicated-why",
+    "title": "5 Version Control & Collaboration",
+    "section": "Looks awfully complicated, why?",
+    "text": "Looks awfully complicated, why?\n\nEfficient collaboration with novice/untrusted contributors\n\nMaintainer: automated checks reduce review burden\nContributor: no need to check manually\n\nBranching promotes asynchronous work on features\nFull history - can always go back\n\n\\(\\leadsto\\) making code-collaboration scalable"
+  },
+  {
+    "objectID": "slides/05_collaboration.html#demo",
+    "href": "slides/05_collaboration.html#demo",
+    "title": "5 Version Control & Collaboration",
+    "section": "Demo",
+    "text": "Demo\n\nThanks to Lukas Graz for helping me in this demo!\nHow does a pull request work?\nFirst steps for setting up the next practical\nDon’t panic - steps are all documented at  https://github.com/kkmann/simulatr"
+  },
+  {
+    "objectID": "slides/05_collaboration.html#practical---collaboration-on-github",
+    "href": "slides/05_collaboration.html#practical---collaboration-on-github",
+    "title": "5 Version Control & Collaboration",
+    "section": "Practical - collaboration on GitHub",
+    "text": "Practical - collaboration on GitHub\n\nWork in teams of ~ 3 or 4\nGo to https://github.com/kkmann/simulatr and read through the instructions in the README.md file\nThe repository is a template to practice collaboration on GitHub\nOnly one member per team needs to use the template and invite the others as collaborators!\nTake some time to checkout the README.md file and set up your environment in posit cloud\nCan you fix the errors with some pull requests?\nThe purpose of this exercise is to explore the collaboration functionality of GitHub - not to produce a perfect package ;)"
+  },
+  {
+    "objectID": "slides/10_reproducibility.html#acknowledgments",
+    "href": "slides/10_reproducibility.html#acknowledgments",
+    "title": "10 Reproducibility",
+    "section": "Acknowledgments",
+    "text": "Acknowledgments\nThis section is based on and adapted from great (Quarto) slides by Louisa Smith, see her course website R Bootcamp (EPI590R) from Northeastern University.\nThanks a lot Louisa!"
+  },
+  {
+    "objectID": "slides/10_reproducibility.html#what-is-quarto",
+    "href": "slides/10_reproducibility.html#what-is-quarto",
+    "title": "10 Reproducibility",
+    "section": "What is Quarto?",
+    "text": "What is Quarto?\n\nFormat of a book or pamphlet produced from full sheets printed with eight pages of text, four to a side, then folded twice to produce four leaves (Wikipedia)\n\n\n\n\nAn open-source scientific and technical publishing system (Quarto.org)\n\nIntegrates text, code, and output\nCan create multiple different types of products (documents, slides, websites, books)"
+  },
+  {
+    "objectID": "slides/10_reproducibility.html#why-not-r-markdown",
+    "href": "slides/10_reproducibility.html#why-not-r-markdown",
+    "title": "10 Reproducibility",
+    "section": "Why not R Markdown?",
+    "text": "Why not R Markdown?\nOnly because Quarto is newer and more featured!\n\nAlmost everything you already know how to do in R Markdown you can do in Quarto, and more!\n\nSee a comparison here\n\nAll of these slides, website, etc. are all made in Quarto.\nIf you know and love R Markdown, you can keep using it\n\nThere are no plans for deprecation of R Markdown"
+  },
+  {
+    "objectID": "slides/10_reproducibility.html#quarto-workflow",
+    "href": "slides/10_reproducibility.html#quarto-workflow",
+    "title": "10 Reproducibility",
+    "section": "Quarto workflow",
+    "text": "Quarto workflow\n\nCreate a Quarto document\nWrite code (in R, Python, Julia, or Observable JavaScript)\nWrite text (with markdown syntax)\nRepeat 2-3 in whatever order you want\nRender"
+  },
+  {
+    "objectID": "slides/10_reproducibility.html#how-does-the-rendering-work",
+    "href": "slides/10_reproducibility.html#how-does-the-rendering-work",
+    "title": "10 Reproducibility",
+    "section": "How does the rendering work?",
+    "text": "How does the rendering work?\n\nknitr processes the code chunks, executes the R code, and inserts the code outputs (e.g., plots, tables) back into the markdown document\npandoc transforms the markdown document into various output formats"
+  },
+  {
+    "objectID": "slides/10_reproducibility.html#text-and-code",
+    "href": "slides/10_reproducibility.html#text-and-code",
+    "title": "10 Reproducibility",
+    "section": "Text and code…",
+    "text": "Text and code…\n# My header\n\nSome text\n\nSome *italic text*\n\nSome **bold text**\n\n- Eggs\n- Milk\n\n```{r}\nx &lt;- 3\nx\n```"
+  },
+  {
+    "objectID": "slides/10_reproducibility.html#becomes",
+    "href": "slides/10_reproducibility.html#becomes",
+    "title": "10 Reproducibility",
+    "section": "… becomes …",
+    "text": "… becomes …\nMy header\nSome text\nSome italic text\nSome bold text\n\nEggs\nMilk\n\n\n\n[1] 3"
+  },
+  {
+    "objectID": "slides/10_reproducibility.html#r-chunks",
+    "href": "slides/10_reproducibility.html#r-chunks",
+    "title": "10 Reproducibility",
+    "section": "R chunks",
+    "text": "R chunks\nEverything within the R chunks has to be valid R.\n\n```{r}\nx &lt;- 3\n```\n\n\n```{r}\nx + 4\n```\n\n[1] 7\n\n\nChunks run in order, continuously, like a single script."
+  },
+  {
+    "objectID": "slides/10_reproducibility.html#yaml",
+    "href": "slides/10_reproducibility.html#yaml",
+    "title": "10 Reproducibility",
+    "section": "YAML",
+    "text": "YAML\nAt the top of your Quarto document, a header written in yaml describes options for the document:\n---\ntitle: \"My document\"\nauthor: Louisa Smith\nformat: html\n---\nThere are a ton of possible options (more below), but importantly, this determines the document output."
+  },
+  {
+    "objectID": "slides/10_reproducibility.html#output",
+    "href": "slides/10_reproducibility.html#output",
+    "title": "10 Reproducibility",
+    "section": "Output",
+    "text": "Output"
+  },
+  {
+    "objectID": "slides/10_reproducibility.html#chunk-options",
+    "href": "slides/10_reproducibility.html#chunk-options",
+    "title": "10 Reproducibility",
+    "section": "Chunk options",
+    "text": "Chunk options\nFor example, to suppress the code printing:\n```{r}\n#| echo: false\n2 * 2\n```\n#| echo: false tells knitr to exclude the source code from the output.\n\n\nIn RMarkdown, you would have written this {r, echo = FALSE}. You can still do that with Quarto, but it’s generally easier to read, particularly for long options (like caption titles)"
+  },
+  {
+    "objectID": "slides/10_reproducibility.html#chunk-options-1",
+    "href": "slides/10_reproducibility.html#chunk-options-1",
+    "title": "10 Reproducibility",
+    "section": "Chunk options",
+    "text": "Chunk options\nAdditional chunk options which are often used:\n\n#| eval: false: Don’t evaluate this chunk! Just print the code.\n#| error: true: Render this even if the chunk causes an error.\n#| warning: false: Don’t print warnings.\n#| include: false: Suppresses all output from the code block.\n#| cache: true: Use knitr caching mechanism for this chunk."
+  },
+  {
+    "objectID": "slides/10_reproducibility.html#document-options",
+    "href": "slides/10_reproducibility.html#document-options",
+    "title": "10 Reproducibility",
+    "section": "Document options",
+    "text": "Document options\nYou can tell the entire document not to evaluate or print code (so just include the text!) at the top:\n---\ntitle: \"My document\"\nauthor: Louisa Smith\nformat: html\nexecute:\n  eval: false\n  echo: false\n---\nCareful! YAML is really picky about spacing."
+  },
+  {
+    "objectID": "slides/10_reproducibility.html#document-options-1",
+    "href": "slides/10_reproducibility.html#document-options-1",
+    "title": "10 Reproducibility",
+    "section": "Document options",
+    "text": "Document options\nThere are lots of different options for the document.\n\nFor example, you can choose a theme:\n\n---\nformat:\n  html:\n    theme: yeti\n---\n\nRemember the pickiness: when you have a format option, html: moves to a new line and the options are indented 2 spaces"
+  },
+  {
+    "objectID": "slides/10_reproducibility.html#chunks-can-produce-figures-and-tables",
+    "href": "slides/10_reproducibility.html#chunks-can-produce-figures-and-tables",
+    "title": "10 Reproducibility",
+    "section": "Chunks can produce figures and tables",
+    "text": "Chunks can produce figures and tables\n\n```{r}\n#| label: tbl-one\n#| tbl-cap: \"This is a great table\"\nknitr::kable(mtcars[1:3,])\n```\n\n\n\nTable 1: This is a great table\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nmpg\ncyl\ndisp\nhp\ndrat\nwt\nqsec\nvs\nam\ngear\ncarb\n\n\n\n\nMazda RX4\n21.0\n6\n160\n110\n3.90\n2.620\n16.46\n0\n1\n4\n4\n\n\nMazda RX4 Wag\n21.0\n6\n160\n110\n3.90\n2.875\n17.02\n0\n1\n4\n4\n\n\nDatsun 710\n22.8\n4\n108\n93\n3.85\n2.320\n18.61\n1\n1\n4\n1"
+  },
+  {
+    "objectID": "slides/10_reproducibility.html#chunks-can-produce-figures-or-tables",
+    "href": "slides/10_reproducibility.html#chunks-can-produce-figures-or-tables",
+    "title": "10 Reproducibility",
+    "section": "Chunks can produce figures or tables",
+    "text": "Chunks can produce figures or tables\n\n```{r}\n#| label: fig-hist\n#| fig-cap: \"This is a histogram\"\nhist(rnorm(100))\n```\n\n\nFigure 1: This is a histogram"
+  },
+  {
+    "objectID": "slides/10_reproducibility.html#cross-referencing",
+    "href": "slides/10_reproducibility.html#cross-referencing",
+    "title": "10 Reproducibility",
+    "section": "Cross-referencing",
+    "text": "Cross-referencing\nYou can then refer to those with @tbl-one and @fig-hist and the Table and Figure ordering will be correct (and linked)\n\n@fig-hist contains a histogram and @tbl-one a table.\n\ngets printed as:\nFigure 1 contains a histogram and Table 1 a table."
+  },
+  {
+    "objectID": "slides/10_reproducibility.html#inline-r",
+    "href": "slides/10_reproducibility.html#inline-r",
+    "title": "10 Reproducibility",
+    "section": "Inline R",
+    "text": "Inline R\nAlong with just regular text, you can also run R code within the text:\n\nThere were `r 3 + 4` participants\n\nbecomes:\nThere were 7 participants"
+  },
+  {
+    "objectID": "slides/10_reproducibility.html#inline-stats",
+    "href": "slides/10_reproducibility.html#inline-stats",
+    "title": "10 Reproducibility",
+    "section": "Inline stats",
+    "text": "Inline stats\nYou might want to create list of stats that you want to report in your manuscript:\nI can then print these numbers in the text with:\nThere were `r stats$n` participants with a mean age of `r stats$mean_age`.\nwhich turns into:\nThere were 1123 participants with a mean age of 43.5."
+  },
+  {
+    "objectID": "slides/10_reproducibility.html#what-is-renv",
+    "href": "slides/10_reproducibility.html#what-is-renv",
+    "title": "10 Reproducibility",
+    "section": "What is {renv}?",
+    "text": "What is {renv}?\n\n\n{renv} is an R package for managing project dependencies and creating reproducible package environments."
+  },
+  {
+    "objectID": "slides/10_reproducibility.html#benefits-of-using-renv",
+    "href": "slides/10_reproducibility.html#benefits-of-using-renv",
+    "title": "10 Reproducibility",
+    "section": "Benefits of using {renv}",
+    "text": "Benefits of using {renv}\n\nIsolation: Installing a new or updated package for one project won’t break your other projects, and vice versa. That’s because {renv} gives each project its own, private, library of R packages.\nReproducibility: {renv} records the exact package versions you depend on, and ensures those exact versions are the ones that get installed wherever you go.\nPortability: Easily transport your projects from one computer to another, even across different platforms. {renv} makes it easy to install the packages your project depends on."
+  },
+  {
+    "objectID": "slides/10_reproducibility.html#getting-started-with-renv",
+    "href": "slides/10_reproducibility.html#getting-started-with-renv",
+    "title": "10 Reproducibility",
+    "section": "Getting Started with {renv}",
+    "text": "Getting Started with {renv}\n\nInstall {renv} (only once):\n\ninstall.packages(\"renv\")\n\nInitialize a project (only once):\n\nrenv::init()\n\nInstall packages:\n\ninstall.packages(\"other_package\")\n# Below only works because we use `renv` here:\ninstall.packages(\"github_user/github_package\")\n\nTrack dependencies via a “lockfile”:\n\nrenv::snapshot()"
+  },
+  {
+    "objectID": "slides/10_reproducibility.html#behind-the-scenes",
+    "href": "slides/10_reproducibility.html#behind-the-scenes",
+    "title": "10 Reproducibility",
+    "section": "Behind the scenes",
+    "text": "Behind the scenes\n\nYour project .Rprofile is updated to include:\n\nsource(\"renv/activate.R\")\n\nThis is run every time R starts, and does some management of the library paths to make sure when you call install.packges(\"package\") or library(package) it uses the private library\nAn renv.lock file (really just a text file) is created to store the names and versions of the packages. This is the “lockfile” mentioned above."
+  },
+  {
+    "objectID": "slides/10_reproducibility.html#renv.lock",
+    "href": "slides/10_reproducibility.html#renv.lock",
+    "title": "10 Reproducibility",
+    "section": "renv.lock",
+    "text": "renv.lock\n{\n  \"R\": {\n    \"Version\": \"4.3.0\",\n    \"Repositories\": [\n      {\n        \"Name\": \"CRAN\",\n        \"URL\": \"https://cran.rstudio.com\"\n      }\n    ]\n  },\n  \"Packages\": {\n    \"R6\": {\n      \"Package\": \"R6\",\n      \"Version\": \"2.5.1\",\n      \"Source\": \"Repository\",\n      \"Repository\": \"CRAN\",\n      \"Requirements\": [\n        \"R\"\n      ],\n      \"Hash\": \"470851b6d5d0ac559e9d01bb352b4021\"\n    },\n    base64enc\": {\n      \"Package\": \"base64enc\",\n      \"Version\": \"0.1-3\",\n      \"Source\": \"Repository\",\n      \"Repository\": \"CRAN\",\n      \"Requirements\": [\n        \"R\"\n      ],\n      \"Hash\": \"543776ae6848fde2f48ff3816d0628bc\"\n    },"
+  },
+  {
+    "objectID": "slides/10_reproducibility.html#using-renv-later",
+    "href": "slides/10_reproducibility.html#using-renv-later",
+    "title": "10 Reproducibility",
+    "section": "Using {renv} later",
+    "text": "Using {renv} later\n\nRestore an environment:\n\nrenv::restore()\n\nInstall new packages:\n\ninstall.packages(\"other_package\")\n\nUpdate the lockfile:\n\nrenv::snapshot()"
+  },
+  {
+    "objectID": "slides/10_reproducibility.html#collaboration-with-renv",
+    "href": "slides/10_reproducibility.html#collaboration-with-renv",
+    "title": "10 Reproducibility",
+    "section": "Collaboration with {renv}",
+    "text": "Collaboration with {renv}\n\nShare the project’s renv.lock file with collaborators to ensure consistent environments\n\nWith git, you’ll need to commit renv.lock, .Rprofile, renv/settings.json and renv/activate.R. This is particularly simple because {renv} will create a .gitignore for you, and you can just commit all suggested files.\n\nWhen they run renv::restore(), the correct versions of the packages will be installed on their computer\n\nrenv::restore()"
+  },
+  {
+    "objectID": "slides/10_reproducibility.html#other-helpful-functions",
+    "href": "slides/10_reproducibility.html#other-helpful-functions",
+    "title": "10 Reproducibility",
+    "section": "Other helpful functions",
+    "text": "Other helpful functions\n\nRemove packages that are no longer used:\n\nrenv::clean()\n\nCheck the status of the project library with respect to the lockfile:\n\nrenv::status()\n\nThis will tell you to renv::snapshot() to add packages you’ve installed but haven’t snapshotted, or renv::restore() if you’re missing packages you need but which aren’t installed.\nUpdate packages which are out-of-date (only checked from their original source):\n\nrenv::update()"
+  },
+  {
+    "objectID": "slides/10_reproducibility.html#package-development-with-renv",
+    "href": "slides/10_reproducibility.html#package-development-with-renv",
+    "title": "10 Reproducibility",
+    "section": "Package Development with {renv}",
+    "text": "Package Development with {renv}\n\nInstall all of your package’s dependencies as per DESCRIPTION file:\n\nrenv::install()\n\nIf you need to test your package with other development versions, use Remotes field and a project specific library:\nRemotes:\n  r-lib/ggplot2\nIn order to avoid R CMD build performance hit, by default, {renv} will create a package project specific library outside of the directory.\n\nExact location may be controlled with environment variable RENV_PATHS_LIBRARY_ROOT"
+  },
+  {
+    "objectID": "slides/10_reproducibility.html#package-development-with-renv-contd",
+    "href": "slides/10_reproducibility.html#package-development-with-renv-contd",
+    "title": "10 Reproducibility",
+    "section": "Package Development with {renv} (cont’d)",
+    "text": "Package Development with {renv} (cont’d)\n\nContinuous integration (CI) is well supported\n\nBasic idea is to renv::restore() the package environment on the CI machine, and use provided cache as best as possible\nExample: GitHub Actions (details are given here)\nsteps:\n- uses: actions/checkout@v3\n- uses: r-lib/actions/setup-r@v2\n- uses: r-lib/actions/setup-renv@v2\n\nIgnore the {renv} lockfile and the package folder when building the tarball for CRAN submission\n\n{renv} should automatically edit .Rbuildignore accordingly, just good to double check"
+  },
+  {
+    "objectID": "slides/10_reproducibility.html#conclusion",
+    "href": "slides/10_reproducibility.html#conclusion",
+    "title": "10 Reproducibility",
+    "section": "Conclusion",
+    "text": "Conclusion\n{renv} benefits are isolation, reproducibility, and portability.\nGetting started with {renv}:\n\nInitialize a project using renv::init().\nInstall packages and then save with renv::snapshot().\nRestore later or elsewhere with renv::restore()."
+  },
+  {
+    "objectID": "slides/10_reproducibility.html#exercise-1-create-a-quarto-project-with-renv",
+    "href": "slides/10_reproducibility.html#exercise-1-create-a-quarto-project-with-renv",
+    "title": "10 Reproducibility",
+    "section": "Exercise 1: Create a Quarto Project with {renv}",
+    "text": "Exercise 1: Create a Quarto Project with {renv}\n\nCreate a new Quarto project via File &gt; New Project &gt; New Directory &gt; Quarto Project in RStudio.\nEnable the use of {renv}\nCreate Project\nWrite a short introduction and perform a simple analysis\nRender the document"
+  },
+  {
+    "objectID": "slides/10_reproducibility.html#exercise-2-use-renv-for-dependencies",
+    "href": "slides/10_reproducibility.html#exercise-2-use-renv-for-dependencies",
+    "title": "10 Reproducibility",
+    "section": "Exercise 2: Use {renv} for dependencies",
+    "text": "Exercise 2: Use {renv} for dependencies\n\nAdd any additional R packages your analysis needs:\n\ninstall.packages(\"RQuantLib\") # Example non-standard package\n\nCheck renv::status() and the lockfile - did anything change?\nNow use the additional R package in your Quarto document:\n\nlibrary(\"RQuantLib\")\n\nCheck the status again and record the state with renv::snapshot()\nClose the project and confirm that the package is not available anymore\nOpen the project and confirm that the package is available"
+  },
+  {
     "objectID": "slides/08_optimization.html#acknowledgments",
     "href": "slides/08_optimization.html#acknowledgments",
     "title": "8 Code Optimization",
@@ -998,7 +1222,7 @@
     "href": "slides/08_optimization.html#profiling-classic-rprof-output",
     "title": "8 Code Optimization",
     "section": "Profiling: Classic Rprof output",
-    "text": "Profiling: Classic Rprof output\n\nRprof()\nf()\nRprof(NULL)\nsummaryRprof()\n\n$by.self\n                  self.time self.pct total.time total.pct\n\"profvis::pause\"       0.40       80       0.40        80\n\"dyn.load\"             0.02        4       0.02         4\n\"find.package\"         0.02        4       0.02         4\n\"getClassDef\"          0.02        4       0.02         4\n\"lockEnvironment\"      0.02        4       0.02         4\n\"readRDS\"              0.02        4       0.02         4\n\n$by.total\n                          total.time total.pct self.time self.pct\n\".main\"                         0.50       100      0.00        0\n\"block_exec\"                    0.50       100      0.00        0\n\"call_block\"                    0.50       100      0.00        0\n\"eng_r\"                         0.50       100      0.00        0\n\"eval_with_user_handlers\"       0.50       100      0.00        0\n\"eval\"                          0.50       100      0.00        0\n\"evaluate_call\"                 0.50       100      0.00        0\n\"evaluate::evaluate\"            0.50       100      0.00        0\n\"evaluate\"                      0.50       100      0.00        0\n\"execute\"                       0.50       100      0.00        0\n\"f\"                             0.50       100      0.00        0\n\"handle\"                        0.50       100      0.00        0\n\"in_dir\"                        0.50       100      0.00        0\n\"in_input_dir\"                  0.50       100      0.00        0\n\"knitr::knit\"                   0.50       100      0.00        0\n\"process_file\"                  0.50       100      0.00        0\n\"process_group.block\"           0.50       100      0.00        0\n\"process_group\"                 0.50       100      0.00        0\n\"rmarkdown::render\"             0.50       100      0.00        0\n\"timing_fn\"                     0.50       100      0.00        0\n\"withCallingHandlers\"           0.50       100      0.00        0\n\"withVisible\"                   0.50       100      0.00        0\n\"profvis::pause\"                0.40        80      0.40       80\n\"g\"                             0.30        60      0.00        0\n\"asNamespace\"                   0.10        20      0.00        0\n\"loadNamespace\"                 0.10        20      0.00        0\n\"namespaceImportFrom\"           0.10        20      0.00        0\n\"namespaceImport\"               0.06        12      0.00        0\n\"dyn.load\"                      0.02         4      0.02        4\n\"find.package\"                  0.02         4      0.02        4\n\"getClassDef\"                   0.02         4      0.02        4\n\"lockEnvironment\"               0.02         4      0.02        4\n\"readRDS\"                       0.02         4      0.02        4\n\".checkGroupSigLength\"          0.02         4      0.00        0\n\".updateMethodsInTable\"         0.02         4      0.00        0\n\"doTryCatch\"                    0.02         4      0.00        0\n\"eval.parent\"                   0.02         4      0.00        0\n\"is\"                            0.02         4      0.00        0\n\"lazyLoad\"                      0.02         4      0.00        0\n\"lazyLoadDBexec\"                0.02         4      0.00        0\n\"library.dynam\"                 0.02         4      0.00        0\n\"local\"                         0.02         4      0.00        0\n\"methods::cacheMetaData\"        0.02         4      0.00        0\n\"Recall\"                        0.02         4      0.00        0\n\"sealNamespace\"                 0.02         4      0.00        0\n\"sys.source\"                    0.02         4      0.00        0\n\"try\"                           0.02         4      0.00        0\n\"tryCatch\"                      0.02         4      0.00        0\n\"tryCatchList\"                  0.02         4      0.00        0\n\"tryCatchOne\"                   0.02         4      0.00        0\n\n$sample.interval\n[1] 0.02\n\n$sampling.time\n[1] 0.5"
+    "text": "Profiling: Classic Rprof output\n\nRprof()\nf()\nRprof(NULL)\nsummaryRprof()"
   },
   {
     "objectID": "slides/08_optimization.html#profiling-getting-visual",
